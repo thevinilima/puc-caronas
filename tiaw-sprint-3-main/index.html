@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/vagas.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <title>Vagas</title>
+  </head>
+
+  <body onload="loadVagas()">
+    <header>
+      <nav id="navigation">
+        <a href="" class="menu-option">
+          <ion-icon name="home-outline"></ion-icon>
+        </a>
+        <a href="perfil/" class="menu-option">
+          <ion-icon name="person-outline"></ion-icon>
+        </a>
+        <a href="" class="menu-option">
+          <ion-icon name="location-outline"></ion-icon>
+        </a>
+        <a href="" class="menu-option">
+          <ion-icon name="people-outline"></ion-icon>
+        </a>
+        <a href="" class="menu-option">
+          <ion-icon name="car-outline"></ion-icon>
+        </a>
+        <a href="form-carona/form-rota.html" class="menu-option">
+          <ion-icon name="add-outline"></ion-icon>
+        </a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1 class="title">Vagas</h1>
+      <main>
+        <div id="list">
+          <div class="card">
+            <div class="avatar">
+              <i class="fa-solid fa-circle-user fa-3x"></i>
+            </div>
+            <div class="info">
+              <div>
+                <h3>Fulano está dando carona</h3>
+              </div>
+              <div>
+                <h4>2 vagas disponíveis</h4>
+              </div>
+            </div>
+            <button class="details-btn">Ver vaga</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

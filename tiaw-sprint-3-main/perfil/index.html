@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/perfil.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <title>Suas Informações</title>
+  </head>
+
+  <body onload="loadUser()">
+    <header>
+      <nav id="navigation">
+        <a href="" class="menu-option">
+          <ion-icon name="home-outline"></ion-icon>
+        </a>
+        <a href="" class="menu-option">
+          <ion-icon name="person-outline"></ion-icon>
+        </a>
+        <a href="" class="menu-option">
+          <ion-icon name="location-outline"></ion-icon>
+        </a>
+        <a href="../" class="menu-option">
+          <ion-icon name="people-outline"></ion-icon>
+        </a>
+        <a href="" class="menu-option">
+          <ion-icon name="car-outline"></ion-icon>
+        </a>
+        <a href="../form-carona/form-rota.html" class="menu-option">
+          <ion-icon name="add-outline"></ion-icon>
+        </a>
+      </nav>
+    </header>
+    <div class="container">
+      <h1 class="title">Suas Informações</h1>
+      <main>
+        <form>
+          <div class="user-data">
+            <div class="data-info">
+              <h3>Nome</h3>
+            </div>
+            <div class="data">
+              <input type="text" name="nome" id="nome" required />
+            </div>
+          </div>
+          <div class="user-data">
+            <div class="data-info">
+              <h3>Unidade</h3>
+            </div>
+            <div class="data">
+              <input type="text" name="unidade" id="unidade" required />
+            </div>
+          </div>
+          <div class="user-data">
+            <div class="data-info">
+              <h3>Turno</h3>
+            </div>
+            <div class="data">
+              <input type="text" name="turno" id="turno" required />
+            </div>
+          </div>
+          <div class="user-data">
+            <div class="data-info">
+              <h3>Curso</h3>
+            </div>
+            <div class="data">
+              <input type="text" name="curso" id="curso" required />
+            </div>
+          </div>
+          <div class="user-data">
+            <div class="data-info">
+              <h3>Bairro</h3>
+            </div>
+            <div class="data">
+              <input type="text" name="bairro" id="bairro" required />
+            </div>
+          </div>
+          <div class="user-data">
+            <div class="data-info">
+              <h3>Região</h3>
+            </div>
+            <div class="data">
+              <input type="text" name="regiao" id="regiao" required />
+            </div>
+          </div>
+          <div class="user-data">
+            <div class="data-info">
+              <h3>Eu gostaria de</h3>
+            </div>
+            <div class="data">
+              <div class="row">
+                <input
+                  type="radio"
+                  name="status-carona"
+                  id="give"
+                  value="give"
+                  required
+                />
+                <label for="give">Dar carona</label>
+              </div>
+              <div class="row">
+                <input type="radio" name="status-carona" id="get" value="get" />
+                <label for="get">Pegar carona</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit">Salvar</button>
+        </form>
+        <div id="delete">
+          <button onclick="deleteUser()">Excluir perfil</button>
+        </div>
+      </main>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

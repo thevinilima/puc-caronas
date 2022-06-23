@@ -1,0 +1,21 @@
+.user-data {
+  margin-bottom: 40px;
+}
+
+.data-info {
+  margin-bottom: 10px;
+}
+
+#delete {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding: 0 5px;
+}
+
+#delete button {
+  background: none;
+  border: none;
+  color: #e98b7a;
+}

@@ -1,0 +1,13 @@
+.divLogo {
+    display: flex;
+    justify-content: center;
+}
+.logo {
+    max-width: 250px;
+    margin: 20px;
+}
+
+.divBotao {
+    display: flex;
+    justify-content: space-between;
+}

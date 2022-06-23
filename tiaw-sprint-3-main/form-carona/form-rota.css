@@ -1,0 +1,67 @@
+.sub {
+  color: #0f3e5c;
+}
+
+.titulo {
+  color: #0f3e5c;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  margin-left: 2em;
+}
+
+.blocoinfo {
+  padding-bottom: 1.5em;
+}
+
+.content {
+  margin-left: 2em;
+}
+
+.btn-primary {
+  color: #000000 !important;
+  background-color: #4ebfff !important;
+  border-color: #4ebfff !important;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  -webkit-box-shadow: 0px 6px 7px 0px rgba(50, 50, 50, 0.58);
+  -moz-box-shadow: 0px 6px 7px 0px rgba(50, 50, 50, 0.58);
+  box-shadow: 0px 6px 7px 0px rgba(50, 50, 50, 0.58);
+  border-radius: 10px !important;
+}
+
+.caixinha {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 6px;
+  padding: 5px 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#navigation {
+  width: 100%;
+  min-height: 100px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-shrink: 2;
+  flex-wrap: wrap;
+}
+
+ion-icon {
+  color: rgb(0, 0, 94);
+  font-size: 2rem;
+  padding: 10px;
+  border-radius: 50%;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+ion-icon:hover {
+  background-color: rgb(209, 217, 255);
+}

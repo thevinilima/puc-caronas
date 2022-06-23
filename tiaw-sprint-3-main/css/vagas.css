@@ -1,0 +1,34 @@
+:root {
+  --btn-blue: #4ebfff;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px #ccc;
+  position: relative;
+}
+
+.avatar {
+  margin-right: 15px;
+}
+
+.card .info h3 {
+  font-weight: 500;
+}
+
+.card .details-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  padding-right: 10px;
+  background: none;
+  border: none;
+  color: var(--btn-blue);
+  font-size: 1em;
+}

@@ -6,7 +6,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 const pucMarker = L.marker([-19.9326551541274, -43.936040839319524]).addTo(map);
-pucMarker.bindPopup('<b>PUC MINAS</b><br>Praça da Liberdade').openPopup();
+const pucPopup = L.popup({
+  closeOnClick: false,
+  closeButton: false,
+  autoClose: false,
+}).setContent('<b>PUC MINAS</b><br>Praça da Liberdade');
+pucMarker.bindPopup(pucPopup).openPopup();
 
 const onLocationFound = e => {
   if (e.type === 'locationerror') return;

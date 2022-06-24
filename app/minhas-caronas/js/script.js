@@ -8,16 +8,18 @@ function getVagas() {
 
 function carregaVagas() {
   const vagas = getVagas();
+  if (!vagas) return;
+
   const list = document.querySelector('.list');
   list.innerHTML = null;
 
   vagas.forEach((vaga, index) => {
     const item = document.createElement('div');
-    item.classList.add('item');
+    item.classList.add('card');
 
     const info = document.createElement('div');
     info.classList.add('info');
-    info.innerHTML = `
+    const infoHTML = `
       <div>
         <div class="icon">
           <i class="fa-regular fa-calendar"></i>
@@ -41,16 +43,16 @@ function carregaVagas() {
           <i class="fa-solid fa-location-dot"></i>
         </div>
         <span>Ruas dos Bobos, 0, Lindeza</span>
-      </div>
-    `;
+      </div>`;
+    info.insertAdjacentHTML('afterbegin', infoHTML);
 
     const actions = document.createElement('div');
     actions.classList.add('actions');
     actions.innerHTML = `
-      <button class="icon-btn">
+      <button class="icon-btn edit-icon" title="Editar">
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
-      <button class="icon-btn">
+      <button class="icon-btn delete-icon" title="Apagar">
         <i class="fa-regular fa-circle-xmark"></i>
       </button>
     `;

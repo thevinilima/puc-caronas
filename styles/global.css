@@ -134,6 +134,14 @@ button:active {
   background-color: #e5e5e5;
 }
 
+.edit-icon {
+  color: var(--main-blue);
+}
+
+.delete-icon {
+  color: #870707;
+}
+
 .details-btn {
   padding: 5px;
   padding-right: 10px;

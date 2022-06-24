@@ -1,4 +1,5 @@
-.item {
+.card {
+  width: 500px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,31 +9,37 @@
   background-color: #fefefe;
 }
 
-.item .info {
+@media (max-width: 520px) {
+  .card {
+    width: 360px;
+  }
+}
+
+.card .info {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   padding-right: 10px;
 }
 
-.item .info div {
+.card .info div {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.item .info div i {
+.card .info div i {
   font-size: 1.2em;
 }
 
-.item .info div .icon {
+.card .info div .icon {
   width: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.item .actions {
+.card .actions {
   display: flex;
   flex-direction: column;
   padding-left: 5px;

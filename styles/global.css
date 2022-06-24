@@ -73,6 +73,13 @@ main {
   }
 }
 
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
 form {
   width: 100%;
 }
@@ -115,11 +122,44 @@ button:active {
   box-shadow: none;
 }
 
-.btn-icon {
+.icon-btn {
+  width: auto;
+  box-shadow: none;
   background: none;
   border: none;
+  font-size: 1.5em;
+}
+
+.icon-btn:hover {
+  background-color: #e5e5e5;
+}
+
+.details-btn {
+  padding: 5px;
+  padding-right: 10px;
+  background: none;
+  border: none;
+  color: var(--btn-blue);
+  font-size: 1em;
+  cursor: pointer;
 }
 
 ul {
   list-style-type: none;
+}
+
+.weight-400 {
+  font-weight: 400;
+}
+
+.weight-600 {
+  font-weight: 600;
+}
+
+.weight-700 {
+  font-weight: 700;
+}
+
+.weight-800 {
+  font-weight: 800;
 }

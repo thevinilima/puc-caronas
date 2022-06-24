@@ -4,34 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../styles/global.css" />
-    <link rel="stylesheet" href="styles/vagas.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
+    <link
+      rel="shortcut icon"
+      href="../../assets/icons/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../styles/global.css" />
+    <link rel="stylesheet" href="../../styles/nav.css" />
+    <link rel="stylesheet" href="styles/vagas.css" />
     <title>Vagas</title>
   </head>
 
   <body onload="loadVagas()">
     <header>
       <nav id="navigation">
-        <a href="" class="menu-option">
+        <ion-icon id="menu-mobile" name="menu-outline"></ion-icon>
+        <a href="../home/index.html" class="menu-option">
           <ion-icon name="home-outline"></ion-icon>
         </a>
-        <a href="perfil/" class="menu-option">
+        <a href="../perfil/" class="menu-option">
           <ion-icon name="person-outline"></ion-icon>
         </a>
         <a href="" class="menu-option">
-          <ion-icon name="location-outline"></ion-icon>
+          <ion-icon name="location"></ion-icon>
         </a>
-        <a href="" class="menu-option">
+        <a href="../minhas-rotas/" class="menu-option">
           <ion-icon name="people-outline"></ion-icon>
         </a>
-        <a href="" class="menu-option">
+        <a href="../minhas-caronas/" class="menu-option">
           <ion-icon name="car-outline"></ion-icon>
         </a>
-        <a href="form-carona/form-rota.html" class="menu-option">
+        <a href="../minhas-caronas/criar/" class="menu-option">
           <ion-icon name="add-outline"></ion-icon>
         </a>
       </nav>
@@ -40,7 +49,7 @@
     <div class="container">
       <h1 class="title">Vagas</h1>
       <main>
-        <div id="list">
+        <div class="list">
           <div class="card">
             <div class="avatar">
               <i class="fa-solid fa-circle-user fa-3x"></i>
@@ -67,6 +76,7 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
+    <script src="../../js/nav.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

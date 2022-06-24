@@ -1,78 +1,88 @@
 function setVagas(vagas) {
-  localStorage.setItem('vagas', JSON.stringify(vagas))
+  localStorage.setItem('vagas', JSON.stringify(vagas));
 }
 
 function getVagas() {
-  return JSON.parse(localStorage.getItem('vagas'))
+  return JSON.parse(localStorage.getItem('vagas'));
 }
 
 function carregaVagas() {
-  const vagas = getVagas()
-  const vagasList = document.querySelector('.vagas-list')
-  vagasList.innerHTML = null
+  const vagas = getVagas();
+  const list = document.querySelector('.list');
+  list.innerHTML = null;
 
-  let index = 0
-  for (const vaga of vagas) {
-    const blocoInfo = document.createElement('div')
-    blocoInfo.classList.add('blocoinfo')
+  vagas.forEach((vaga, index) => {
+    const item = document.createElement('div');
+    item.classList.add('item');
 
-    const titulo = document.createElement('h4')
-    titulo.classList.add('sub')
-    let vagaStr = parseInt(vaga.valor) === 1 ? 'vaga' : 'vagas'
-    titulo.innerHTML = `${vaga.titulo}, ${vaga.valor} ${vagaStr}`
-    const buttonEditar = document.createElement('button')
-    const buttonDeletar = document.createElement('button')
-    buttonEditar.classList.add('acao')
-    buttonDeletar.classList.add('acao')
-    buttonEditar.setAttribute('onclick', `handleEditarVaga(${index})`)
-    buttonDeletar.setAttribute('onclick', `deletarVaga(${index})`)
-    const iconEditar = document.createElement('i')
-    iconEditar.classList.add('fa-solid', 'fa-pen-to-square')
-    const iconDeletar = document.createElement('i')
-    iconDeletar.classList.add('fa-regular', 'fa-circle-xmark')
-    buttonEditar.appendChild(iconEditar)
-    buttonDeletar.appendChild(iconDeletar)
-    titulo.appendChild(buttonEditar)
-    titulo.appendChild(buttonDeletar)
+    const info = document.createElement('div');
+    info.classList.add('info');
+    info.innerHTML = `
+      <div>
+        <div class="icon">
+          <i class="fa-regular fa-calendar"></i>
+        </div>
+        <span>segunda-feira</span>
+      </div>
+      <div>
+        <div class="icon">
+          <i class="fa-regular fa-clock"></i>
+        </div>
+        <span>22:30</span>
+      </div>
+      <div>
+        <div class="icon">
+          <i class="fa-regular fa-building"></i>
+        </div>
+        <span>PUC Praça da Liberdade</span>
+      </div>
+      <div>
+        <div class="icon">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <span>Ruas dos Bobos, 0, Lindeza</span>
+      </div>
+    `;
 
-    const saidaDiv = document.createElement('div')
-    const destinoDiv = document.createElement('div')
-    const descDiv = document.createElement('div')
-    saidaDiv.innerHTML = `<span class="subtitulo">Saída:</span> ${vaga.saida}`
-    destinoDiv.innerHTML = `<span class="subtitulo">Destino:</span> ${vaga.destino}`
-    descDiv.innerHTML = `<span class="subtitulo">Descrição:</span> ${vaga.desc}`
+    const actions = document.createElement('div');
+    actions.classList.add('actions');
+    actions.innerHTML = `
+      <button class="icon-btn">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+      <button class="icon-btn">
+        <i class="fa-regular fa-circle-xmark"></i>
+      </button>
+    `;
 
-    blocoInfo.appendChild(titulo)
-    blocoInfo.appendChild(saidaDiv)
-    blocoInfo.appendChild(destinoDiv)
-    vaga.desc && blocoInfo.appendChild(descDiv)
+    item.appendChild(info);
+    item.appendChild(actions);
 
-    vagasList.appendChild(blocoInfo)
-    index++
-  }
+    list.appendChild(item);
+  });
 }
 
 function handleEditarVaga(index) {
-  location.href = `form-rota.html?editar=${index}`
+  location.href = `form-rota.html?editar=${index}`;
 }
 
 function calcular(val) {
-  var valor = $('#quantVagas').val()
+  var valor = $('#quantVagas').val();
   if (valor - val !== 0 && valor - val !== 15) {
-    $('#quantVagas').val(valor - val)
+    $('#quantVagas').val(valor - val);
   }
 }
 
 function anunciarVaga() {
-  let titulo = $('#tVaga').val()
-  let saida = $('#endSaida').val()
-  let destino = $('#endDestino').val()
-  let desc = $('#Desc').val()
-  var valor = $('#quantVagas').val()
+  let titulo = $('#tVaga').val();
+  let saida = $('#endSaida').val();
+  let destino = $('#endDestino').val();
+  let desc = $('#Desc').val();
+  var valor = $('#quantVagas').val();
 
   if (!titulo || !saida || !destino || !valor) {
-    alert('Preencha todos os campos obrigatórios!')
-    return
+    alert('Preencha todos os campos obrigatórios!');
+    return;
   }
 
   alert(
@@ -86,24 +96,24 @@ function anunciarVaga() {
       desc +
       ' Quantidade de vagas: ' +
       valor
-  )
+  );
 
-  let vagas = getVagas()
-  if (!vagas) vagas = []
+  let vagas = getVagas();
+  if (!vagas) vagas = [];
   vagas.push({
     titulo,
     saida,
     destino,
     desc,
-    valor
-  })
-  setVagas(vagas)
-  location.href = 'caronas.html'
+    valor,
+  });
+  setVagas(vagas);
+  location.href = 'caronas.html';
 }
 
 function deletarVaga(index) {
-  let vagas = getVagas()
-  vagas.splice(index, 1)
-  setVagas(vagas)
-  carregaVagas()
+  let vagas = getVagas();
+  vagas.splice(index, 1);
+  setVagas(vagas);
+  carregaVagas();
 }

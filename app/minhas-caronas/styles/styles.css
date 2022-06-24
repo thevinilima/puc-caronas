@@ -1,0 +1,40 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px #ccc;
+  background-color: #fefefe;
+}
+
+.item .info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-right: 10px;
+}
+
+.item .info div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.item .info div i {
+  font-size: 1.2em;
+}
+
+.item .info div .icon {
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item .actions {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+  border-left: 1px solid #e8e8e8;
+}

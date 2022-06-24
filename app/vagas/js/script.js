@@ -1,4 +1,4 @@
-const listContainer = document.getElementById('list');
+const listContainer = document.querySelector('.list');
 
 const getVagas = () => {
   return JSON.parse(localStorage.getItem('vagas'));

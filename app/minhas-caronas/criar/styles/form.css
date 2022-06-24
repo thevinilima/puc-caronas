@@ -1,0 +1,26 @@
+#week-days {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 5px 5px 0;
+}
+
+.form-fields-row {
+  display: flex;
+  gap: 20px;
+}
+
+#campus-field {
+  flex: 1;
+}
+
+#address {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 540px) {
+  #week-days, #address {
+    flex-direction: column;
+  }
+}

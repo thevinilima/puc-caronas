@@ -2,6 +2,12 @@
   width: 500px;
 }
 
+@media (max-width: 540px) {
+  .btn {
+    width: 100%;
+  }
+}
+
 .card {
   width: 100%;
   display: flex;

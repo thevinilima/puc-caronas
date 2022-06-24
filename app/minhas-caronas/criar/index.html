@@ -1,110 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRUD</title>
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles/styles.css" />
- 
-  <!-- Bootstrap CSS 5.1.3 - 04/2022 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-  <!-- Fontawesome 6.1.1 - 04/2022 -->
-  <script src="https://kit.fontawesome.com/2c9e6838ea.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      background: #FAF9F6;
-    }
-  </style>
-</head>
-
-<body onload="checkEdicao()">
-  <main>
-    <nav id="navigation">
-      <a href="" class="menu-option">
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="shortcut icon"
+      href="../../../assets/icons/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../../styles/global.css" />
+    <link rel="stylesheet" href="../../../styles/nav.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <title>Anunciar Carona</title>
+  </head>
+  <body onload="checkEdicao()">
+    <header>
+      <nav id="navigation">
+        <ion-icon id="menu-mobile" name="menu-outline"></ion-icon>
+        <a href="../../home/" class="menu-option">
           <ion-icon name="home-outline"></ion-icon>
-      </a>
-      <a href="" class="menu-option">
+        </a>
+        <a href="../../perfil/" class="menu-option">
           <ion-icon name="person-outline"></ion-icon>
-      </a>
-      <a href="../index.html" class="menu-option">
+        </a>
+        <a href="../../vagas/" class="menu-option">
           <ion-icon name="location-outline"></ion-icon>
-      </a>
-      <a href="" class="menu-option">
+        </a>
+        <a href="../../minhas-rotas/" class="menu-option">
           <ion-icon name="people-outline"></ion-icon>
-      </a>
-      <a href="caronas.html" class="menu-option">
-          <ion-icon name="car-outline"></ion-icon>
-      </a>
-      <a href="form-rota.html" class="menu-option">
-          <ion-icon name="add-outline"></ion-icon>
-      </a>
-  </nav>
-    
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <div class="corpo">
-      <div class="titulo">
-        <h1 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Anunciar Carona</h1>
-      </div>
-      <div class="content">
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Título da vaga</h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="text"
-            class="caixinha" id="tVaga">
-          *
-        </div>
-        <div class="blocoinfo">
-          <h4 class="sub">Endereço de saída
-          </h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="text"
-            class="caixinha" id="endSaida" />
-          *
-        </div>
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Endereço de destino
-          </h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="text"
-            class="caixinha" id="endDestino" />
-          *
-        </div>
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Descrição</h4>
-          <div class="input-group">
-            <textarea class="caixinha"
-              style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" class="col-8"
-              aria-label="With textarea" id="Desc"></textarea>
+        </a>
+        <a href=".." class="menu-option">
+          <ion-icon name="car"></ion-icon>
+        </a>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Anunciar Carona</h1>
+      <main>
+        <form>
+          <div class="form-field">
+            <label>Dia da semana</label>
+            <div id="week-days">
+              <div>
+                <input type="radio" id="mon" name="weekDay" required />
+                <label for="mon">segunda</label>
+              </div>
+              <div>
+                <input type="radio" id="tue" name="weekDay" />
+                <label for="tue">terça</label>
+              </div>
+              <div>
+                <input type="radio" id="wed" name="weekDay" />
+                <label for="wed">quarta</label>
+              </div>
+              <div>
+                <input type="radio" id="thu" name="weekDay" />
+                <label for="thu">quinta</label>
+              </div>
+              <div>
+                <input type="radio" id="fri" name="weekDay" />
+                <label for="fri">sexta</label>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="blocoinfo">
-          <h4 class="sub" style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; ">Quantidade</h4>
-          <h2>
-            <button onclick="calcular(1)" style="background-color:#FAF9F6; border-style: inherit;">
-              <i class="fa-solid fa-minus" style="color: red;"></i>
-            </button>
-            <input type='number' min="1" max="15" value="1"
-              style=" border-style: inherit; text-align: center; color: #0f3e5c;; background-color:#FAF9F6 "
-              id="quantVagas">
-            <button style="background-color:#FAF9F6; border-style: inherit;" onclick="calcular(-1)">
-              <i class="fa-solid fa-plus" style="color: green;"></i>
-            </button>
-          </h2>
-        </div>
-      </div>
-      <div class="d-grid gap-2 col-10 mx-auto">
-        <button class="btn btn-primary" style="font-weight: 750;" onclick="anunciarVaga()" id="botao-acao">
-          Anunciar
-        </button>
-      </div>
+          <div class="form-fields-row">
+            <div class="form-field">
+              <label for="time">Hora</label>
+              <input type="time" id="time" required />
+            </div>
+            <div class="form-field" id="campus-field">
+              <label for="campus">Unidade</label>
+              <select id="campus" required>
+                <option value="" disabled selected>Selecionar</option>
+                <option value="praca">Praça da Liberdade</option>
+                <option value="coreu">Coração Eucarístico</option>
+                <option value="sgabr">São Gabriel</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Endereço de Destino</label>
+            <div id="address">
+              <input type="text" id="street" placeholder="Rua" />
+              <input
+                type="text"
+                id="neighborhood"
+                placeholder="Bairro"
+                required
+              />
+            </div>
+          </div>
+          <div class="submit">
+            <button type="submit">Anunciar</button>
+          </div>
+        </form>
+      </main>
     </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/nav.js"></script>
     <script src="js/form.js"></script>
-</body>
-</main>
-
+  </body>
 </html>

@@ -10,7 +10,7 @@ const pucPopup = L.popup({
   closeOnClick: false,
   closeButton: false,
   autoClose: false,
-}).setContent('<b>PUC MINAS</b><br>Praça da Liberdade');
+}).setContent('<strong>PUC MINAS</strong><div>Praça da Liberdade</div>');
 pucMarker.bindPopup(pucPopup).openPopup();
 
 const onLocationFound = e => {

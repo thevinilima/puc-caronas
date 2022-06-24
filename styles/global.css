@@ -74,10 +74,17 @@ main {
 }
 
 .list {
+  width: 500px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-top: 20px;
+}
+
+@media (max-width: 540px) {
+  .list {
+    width: 360px;
+  }
 }
 
 form {

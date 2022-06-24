@@ -1,25 +1,28 @@
-var map = L.map('map').setView([-19.93262551194009, -43.936037967999724], 17)
+const map = L.map('map').setView([-19.93262551194009, -43.936037967999724], 17);
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
-  attribution: '© OpenStreetMap'
-}).addTo(map)
+  attribution: '© OpenStreetMap',
+}).addTo(map);
 
-var marker = L.marker([-19.9326551541274, -43.936040839319524]).addTo(map)
-marker.bindPopup('<b>PUC MINAS</b><br>Unidade Praça da Liberdade').openPopup()
+const pucMarker = L.marker([-19.9326551541274, -43.936040839319524]).addTo(map);
+pucMarker.bindPopup('<b>PUC MINAS</b><br>Praça da Liberdade').openPopup();
 
-function onLocationFound(e) {
-  var radius = e.accuracy / 2
+const onLocationFound = e => {
+  if (e.type === 'locationerror') return;
 
-  var locationMarker = L.marker(e.latlng).addTo(map)
+  const radius = e.accuracy / 2;
 
-  var locationCircle = L.circle(e.latlng, radius).addTo(map)
-}
+  const locationMarker = L.marker(e.latlng).addTo(map);
 
-function onLocationError(e) {
-  alert(e.message)
-}
+  const locationCircle = L.circle(e.latlng, radius).addTo(map);
+};
 
-map.on('locationfound', onLocationFound)
-map.on('locationerror', onLocationError)
+const onLocationError = e => {
+  console.error(e);
+};
 
-map.locate({ setView: true, maxZoom: 16 })
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationFound);
+
+map.locate({ setView: true, maxZoom: 16 });

@@ -3,7 +3,7 @@
 #navigation {
   width: 100%;
   min-height: 100px;
-  background-color: aliceblue;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -26,13 +26,12 @@ ion-icon {
 }
 
 ion-icon:hover {
-  background-color: rgb(209, 217, 255);
+  background-color: #d1d9ff;
 }
 
 .mobileNav {
   flex-direction: column !important;
   height: auto !important;
-  position: absolute;
 }
 
 .mobileItem {
@@ -40,7 +39,7 @@ ion-icon:hover {
   margin: 20px 0;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 560px) {
   ion-icon {
     display: none;
   }
@@ -57,7 +56,7 @@ ion-icon:hover {
 footer {
   width: 100%;
   height: 600px;
-  background-color: aliceblue;
+  background-color: #fff;
   position: absolute;
   bottom: -560px;
   display: flex;

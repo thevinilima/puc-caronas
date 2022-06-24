@@ -116,6 +116,9 @@ input[type='checkbox'] {
 }
 
 button, .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   width: 100%;
   background-color: var(--btn-blue);
@@ -133,6 +136,10 @@ button, .btn {
 button:active, .btn:active {
   transform: translateY(4px);
   box-shadow: none;
+}
+
+.btn i:not(.icon-btn) {
+  margin-right: 5px;
 }
 
 .icon-btn {

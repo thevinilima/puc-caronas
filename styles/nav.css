@@ -2,7 +2,6 @@
 
 #navigation {
   width: 100%;
-  min-height: 100px;
   background-color: #fefefe;
   display: flex;
   align-items: center;
@@ -16,17 +15,29 @@
   display: none;
 }
 
+.menu-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.menu-option span {
+  color: #0f3e5c;
+  font-weight: 600;
+}
+
 .menu-option.active ion-icon {
   background-color: #d1d9ff;
 }
 
 ion-icon {
-  color: rgb(0, 0, 94);
+  color: #0f3e5c;
   font-size: 2rem;
   padding: 10px;
   border-radius: 50%;
   transition: 0.2s ease;
-  cursor: pointer;
 }
 
 ion-icon:hover {
@@ -34,8 +45,8 @@ ion-icon:hover {
 }
 
 .mobileNav {
-  flex-direction: column !important;
-  height: auto !important;
+  flex-direction: column;
+  height: auto;
 }
 
 .mobileItem {

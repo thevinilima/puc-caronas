@@ -27,29 +27,28 @@
     <link rel="stylesheet" href="styles/styles.css" />
     <title>PUC Caronas</title>
   </head>
-
   <body>
     <header>
       <nav id="navigation">
         <ion-icon id="menu-mobile" name="menu-outline"></ion-icon>
         <a href="" class="menu-option">
           <ion-icon name="home"></ion-icon>
-        </a>
-        <a href="../perfil/" class="menu-option">
-          <ion-icon name="person-outline"></ion-icon>
-        </a>
-        <a href="../rotas/" class="menu-option">
-          <ion-icon name="location-outline"></ion-icon>
-        </a>
-        <a href="../vagas/" class="menu-option">
-          <ion-icon name="people-outline"></ion-icon>
+          <span>Início</span>
         </a>
         <a href="../caronas/" class="menu-option">
           <ion-icon name="car-outline"></ion-icon>
+          <span>Caronas</span>
+        </a>
+        <a href="../solicitacoes/" class="menu-option">
+          <ion-icon name="notifications-outline"></ion-icon>
+          <span>Solicitações</span>
+        </a>
+        <a href="../perfil/" class="menu-option">
+          <ion-icon name="person-outline"></ion-icon>
+          <span class="hidden">Perfil</span>
         </a>
       </nav>
     </header>
-
     <div class="container">
       <h1 class="title upper">PUC Caronas</h1>
       <main>
@@ -81,7 +80,6 @@
         </div>
       </main>
     </div>
-
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"

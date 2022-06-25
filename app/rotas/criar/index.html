@@ -1,113 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/form.css" />
+    <title>CRUD</title>
+  </head>
 
-<head>
-
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRUD</title>
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/form.css" />
-  <!-- Bootstrap CSS 5.1.3 - 04/2022 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-</head>
-
-<body onload="checkEdicao()">
-  <main>
-    <nav id="navigation">
-      <a href="" class="menu-option">
-          <ion-icon name="home-outline"></ion-icon>
-      </a>
-      <a href="" class="menu-option">
-          <ion-icon name="person-outline"></ion-icon>
-      </a>
-      <a href="index.html" class="menu-option">
-          <ion-icon name="location-outline"></ion-icon>
-      </a>
-      <a href="" class="menu-option">
-          <ion-icon name="people-outline"></ion-icon>
-      </a>
-      <a href="../TIAW/crud1/caronas.html" class="menu-option">
-          <ion-icon name="car-outline"></ion-icon>
-      </a>
-      <a href="../TIAW/crud1/form-rota.html" class="menu-option">
-          <ion-icon name="add-outline"></ion-icon>
-      </a>
-  </nav>
-    
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <div class="corpo">
-      <div class="titulo">
-        <h1 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" id="titulo">Adicionar Rota</h1>
-      </div>
-      <div class="content">
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Unidade PUC</h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="text"
-            class="caixinha" id="unidade" required />
-        </div>
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Rua de destino</h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="text"
-            class="caixinha" id="rua" required />
-        </div>
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Número do endereço
-            de destino</h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="number"
-            class="caixinha" id="numero" required />
-        </div>
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Bairro</h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="text"
-            class="caixinha" id="bairro" required />
-        </div>
-
-        <div class="blocoinfo">
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="sub">
-            Dia da semana
-          </h4>
-          <h4>
-            <input type="radio" name="dia" value="Domingo" id="dom" required>
-            <label for="dom" style="color: #0f3e5c">Domingo</label>
-            <br>
-            <input type="radio" name="dia" value="Segunda-feira" id="seg">
-            <label for="seg" style="color: #0f3e5c">Segunda-feira</label>
-            <br>
-            <input type="radio" name="dia" value="Terça-feira" id="ter">
-            <label for="ter" style="color: #0f3e5c">Terça-feira</label>
-            <br>
-            <input type="radio" name="dia" value="Quarta-feira" id="qua">
-            <label for="qua" style="color: #0f3e5c">Quarta-feira</label>
-            <br>
-            <input type="radio" name="dia" value="Quinta-feira" id="qui">
-            <label for="qui" style="color: #0f3e5c">Quinta-feira</label>
-            <br>
-            <input type="radio" name="dia" value="Sexta-feira" id="sex">
-            <label for="sex" style="color: #0f3e5c">Sexta-feira</label>
-            <br>
-            <input type="radio" name="dia" value="Sábado" id="sab">
-            <label for="sab" style="color: #0f3e5c">Sábado</label>
-            <br>
-          </h4>
-          <h4 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);; " class="sub">Horário</h4>
-          <input style="border-radius: 10px; width: 310px; border-color: white; border-style: inherit;" type="time"
-            class="caixinha" id="horario" required />
-        </div>
-      </div>
-      <div class="d-grid gap-2 col-10 mx-auto">
-        <button id="botao-acao" class="btn btn-primary" style="font-weight: 750;"
-          onclick="criarCarona()">Adicionar</button>
-      </div>
-    </div>
-    <script src="https://kit.fontawesome.com/2c9e6838ea.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/script.js"></script>
-</body>
-</main>
-
+  <body></body>
 </html>

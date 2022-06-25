@@ -3,17 +3,9 @@
 }
 
 .card {
-  display: flex;
-  align-items: center;
-  background-color: #fefefe;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px 0px #ccc;
   position: relative;
-}
-
-.avatar {
-  margin-right: 15px;
+  justify-content: initial;
+  gap: 15px;
 }
 
 .card .info h3 {

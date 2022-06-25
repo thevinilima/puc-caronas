@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
       integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -21,55 +19,76 @@
     <link rel="stylesheet" href="../../styles/global.css" />
     <link rel="stylesheet" href="../../styles/nav.css" />
     <link rel="stylesheet" href="styles/styles.css" />
-  <title>CRUD</title>
-</head>
+    <title>Suas Rotas</title>
+  </head>
 
-<body onload="loadCaronas()">
-  <header>
-    <nav id="navigation">
-      <ion-icon id="menu-mobile" name="menu-outline"></ion-icon>
-      <a href="../home/" class="menu-option">
-        <ion-icon name="home-outline"></ion-icon>
-      </a>
-      <a href="../perfil/" class="menu-option">
-        <ion-icon name="person-outline"></ion-icon>
-      </a>
-      <a href="../vagas/" class="menu-option">
-        <ion-icon name="location-outline"></ion-icon>
-      </a>
-      <a href="../rotas/" class="menu-option">
-        <ion-icon name="people"></ion-icon>
-      </a>
-      <a href="" class="menu-option">
-        <ion-icon name="car-outline"></ion-icon>
-      </a>
-      <a href="../caronas/criar/" class="menu-option">
-        <ion-icon name="add-outline"></ion-icon>
-      </a>
-    </nav>
-  </header>
-  <main>
-
-  </main>
-    <div class="corpo">
-      <div class="titulo">
-        <h1 style="font-weight: 750; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Suas Rotas</h1>
-      </div>
-      <div class="content">
-        <div class="blocoinfo"> 
-        <h4 style="font-weight: 650;"class="sub"> <span id="dia">Segunda-Feira</span> <span id="horario">22:30</span> <button class="acao">
-          <i class="fa-solid fa-pen-to-square"></i>
-        </button> <button class="acao"><i class="fa-regular fa-circle-xmark"></i></button></h4> 
-        PUC unidade <span id="unidade"> Liberdade</span> <br>
-        Rua <span id="rua">Jacuí</span> <span id="numero"> 700</span>, bairro <span id="bairro">Nova Floresta</span>
-      </div>
-        <div class="caronas-table"></div>
-        <div class="adicionarrota" style="margin-top: 1.5em; margin-bottom: 1em;">
-          <a href="form-carona.html" style="text-decoration: none;">
-            <h4 class="sub" style="font-weight: 650;"><i class="fa-solid fa-plus"></i>Adicionar Rota</h4>
-          </a>
+  <body onload="loadCaronas()">
+    <header>
+      <nav id="navigation">
+        <ion-icon id="menu-mobile" name="menu-outline"></ion-icon>
+        <a href="../home/" class="menu-option">
+          <ion-icon name="home-outline"></ion-icon>
+        </a>
+        <a href="../perfil/" class="menu-option">
+          <ion-icon name="person-outline"></ion-icon>
+        </a>
+        <a href="" class="menu-option">
+          <ion-icon name="location"></ion-icon>
+        </a>
+        <a href="../vagas/" class="menu-option">
+          <ion-icon name="people-outline"></ion-icon>
+        </a>
+        <a href="../caronas/" class="menu-option">
+          <ion-icon name="car-outline"></ion-icon>
+        </a>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Suas Rotas</h1>
+      <main>
+        <a href="criar/" class="btn">
+          <i class="fa-solid fa-plus"></i>
+          <span>Adicionar</span>
+        </a>
+        <div class="list">
+          <div class="card">
+            <div class="info">
+              <div>
+                <div class="icon">
+                  <i class="fa-regular fa-calendar"></i>
+                </div>
+                <span>segunda-feira</span>
+              </div>
+              <div>
+                <div class="icon">
+                  <i class="fa-regular fa-clock"></i>
+                </div>
+                <span>22:30</span>
+              </div>
+              <div>
+                <div class="icon">
+                  <i class="fa-regular fa-building"></i>
+                </div>
+                <span>PUC Praça da Liberdade</span>
+              </div>
+              <div>
+                <div class="icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <span>Ruas dos Bobos, 0</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button class="icon-btn edit-icon" title="Editar">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="icon-btn delete-icon" title="Apagar">
+                <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
     <script
       type="module"
@@ -83,7 +102,5 @@
     <script src="../../js/auth.js"></script>
     <script src="../../js/nav.js"></script>
     <script src="js/script.js"></script>
-</body>
-</main>
-
+  </body>
 </html>

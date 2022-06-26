@@ -36,11 +36,3 @@
 #delete button {
   color: #bd6c6c;
 }
-
-button.saved {
-  background-color: #70bcbe;
-}
-
-button.error {
-  background-color: #bd6c6c;
-}

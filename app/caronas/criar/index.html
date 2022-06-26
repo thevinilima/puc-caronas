@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="styles/form.css" />
     <title>Anunciar Carona</title>
   </head>
-  <body onload="checkEdicao()">
+  <body>
     <header>
       <nav id="navigation">
         <ion-icon id="menu-mobile" name="menu-outline"></ion-icon>
@@ -56,23 +56,29 @@
             <label>Dia da semana</label>
             <div id="week-days">
               <div>
-                <input type="radio" id="mon" name="weekDay" required />
+                <input
+                  type="radio"
+                  id="mon"
+                  value="mon"
+                  name="weekDay"
+                  required
+                />
                 <label for="mon">segunda</label>
               </div>
               <div>
-                <input type="radio" id="tue" name="weekDay" />
+                <input type="radio" id="tue" value="tue" name="weekDay" />
                 <label for="tue">terça</label>
               </div>
               <div>
-                <input type="radio" id="wed" name="weekDay" />
+                <input type="radio" id="wed" value="wed" name="weekDay" />
                 <label for="wed">quarta</label>
               </div>
               <div>
-                <input type="radio" id="thu" name="weekDay" />
+                <input type="radio" id="thu" value="thu" name="weekDay" />
                 <label for="thu">quinta</label>
               </div>
               <div>
-                <input type="radio" id="fri" name="weekDay" />
+                <input type="radio" id="fri" value="fri" name="weekDay" />
                 <label for="fri">sexta</label>
               </div>
             </div>
@@ -82,30 +88,32 @@
               <label for="time">Hora</label>
               <input type="time" id="time" required />
             </div>
-            <div class="form-field" id="campus-field">
-              <label for="campus">Unidade</label>
-              <select id="campus" required>
-                <option value="" disabled selected>Selecionar</option>
-                <option value="praca">Praça da Liberdade</option>
-                <option value="coreu">Coração Eucarístico</option>
-                <option value="sgabr">São Gabriel</option>
-              </select>
+            <div class="form-field">
+              <label for="spaces">Vagas</label>
+              <input type="number" id="spaces" min="1" value="1" required />
             </div>
-          </div>
-          <div class="form-field">
-            <label>Endereço de Destino</label>
-            <div id="address">
-              <input type="text" id="street" placeholder="Rua" />
-              <input
-                type="text"
-                id="neighborhood"
-                placeholder="Bairro"
-                required
-              />
+            <div class="form-field">
+              <label for="route">Percurso</label>
+              <div id="route-field">
+                <div>
+                  <input
+                    type="radio"
+                    id="going"
+                    value="going"
+                    name="route"
+                    required
+                  />
+                  <label for="going">ida</label>
+                </div>
+                <div>
+                  <input type="radio" id="back" value="back" name="route" />
+                  <label for="back">volta</label>
+                </div>
+              </div>
             </div>
           </div>
           <div class="submit">
-            <button type="submit">Anunciar</button>
+            <button type="submit" id="submit">Anunciar</button>
           </div>
         </form>
       </main>

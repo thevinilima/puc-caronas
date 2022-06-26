@@ -8,17 +8,16 @@ const regionInput = document.getElementById('region');
 const statusRadio = document.querySelectorAll('input[name="status"]');
 
 const formEl = document.querySelector('form');
-const submitBtn = document.getElementById('submit');
 const deleteBtn = document.getElementById('delete-btn');
 
 document.body.onload = () => loadUser();
 
 const getUser = () => {
-  return JSON.parse(localStorage.getItem('usuario'));
+  return JSON.parse(localStorage.getItem('user'));
 };
 
 const setUser = user => {
-  localStorage.setItem('usuario', JSON.stringify(user));
+  localStorage.setItem('user', JSON.stringify(user));
 };
 
 const loadUser = () => {
@@ -71,14 +70,15 @@ formEl.addEventListener('submit', e => {
       status,
     });
 
+    const submitBtn = document.getElementById('submit');
     submitBtn.classList.add('saved');
     submitBtn.innerText = 'Salvo!';
     setTimeout(() => {
       submitBtn.classList.remove('saved');
       submitBtn.innerText = 'Salvar';
     }, 2 * 1000);
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error(err);
     submitBtn.classList.add('error');
     submitBtn.innerText = 'Erro!';
     setTimeout(() => {

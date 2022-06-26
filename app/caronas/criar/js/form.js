@@ -1,48 +1,75 @@
-function setVagas(vagas) {
-  localStorage.setItem('vagas', JSON.stringify(vagas))
-}
+const formEl = document.querySelector('form');
+const user = JSON.parse(localStorage.getItem('user'));
 
-function getVagas() {
-  return JSON.parse(localStorage.getItem('vagas'))
-}
+document.body.onload = () => checkEdition();
 
-function checkEdicao() {
-  const queryString = location.search
-  if (!queryString) return
-  const params = new URLSearchParams(queryString)
-  const index = params.get('editar')
+const setRides = rides => {
+  localStorage.setItem('rides', JSON.stringify(rides));
+};
 
-  const vagas = getVagas()
-  let vaga = vagas[index]
+const getRides = () => {
+  return JSON.parse(localStorage.getItem('rides'));
+};
 
-  $('#tVaga').val(vaga.titulo)
-  $('#endSaida').val(vaga.saida)
-  $('#endDestino').val(vaga.destino)
-  $('#Desc').val(vaga.desc)
-  $('#quantVagas').val(vaga.valor)
+const checkEdition = () => {
+  const queryString = location.search;
+  if (!queryString) return;
+  const params = new URLSearchParams(queryString);
+  const index = params.get('editar');
 
-  $botaoAcao = $('#botao-acao')
-  $botaoAcao.attr('onclick', `editarVaga(${index})`)
-  $botaoAcao.html('Salvar')
-  $('.titulo h1').html('Editar Anúncio')
-}
+  $('.titulo h1').html('Editar Anúncio');
+};
 
-function editarVaga(index) {
-  let vagas = getVagas()
-  let titulo = $('#tVaga').val()
-  let saida = $('#endSaida').val()
-  let destino = $('#endDestino').val()
-  let desc = $('#Desc').val()
-  var valor = $('#quantVagas').val()
-  let updatedVaga = {
-    titulo,
-    saida,
-    destino,
-    desc,
-    valor
+formEl.addEventListener('submit', e => {
+  e.preventDefault();
+
+  try {
+    const weekDay = $('input[name=weekDay]:checked', 'form').val();
+    const time = $('#time').val();
+    const spaces = $('#spaces').val();
+    const route = $('input[name=route]:checked', 'form').val();
+
+    const ride = {
+      name: user.name,
+      campus: user.campus,
+      address: user.address,
+      weekDay,
+      route,
+      time,
+      spaces,
+    };
+
+    let rides = getRides();
+    if (rides && rides.length) rides.push(ride);
+    else rides = [ride];
+
+    setRides(rides);
+
+    const submitBtn = document.getElementById('submit');
+    submitBtn.classList.add('saved');
+    submitBtn.innerText = 'Anúncio feito!';
+    submitBtn.disabled = true;
+    setTimeout(() => {
+      submitBtn.classList.remove('saved');
+      submitBtn.innerText = 'Anunciar';
+      submitBtn.disabled = false;
+      location.href = '..';
+    }, 2 * 1000);
+  } catch (err) {
+    console.error(err);
+    submitBtn.classList.add('error');
+    submitBtn.innerText = 'Erro!';
+    setTimeout(() => {
+      submitBtn.classList.remove('error');
+      submitBtn.innerText = 'Anunciar';
+    }, 2 * 1000);
   }
-  vagas.splice(index, 1, updatedVaga)
-  setVagas(vagas)
+});
 
-  location.href = 'caronas.html'
-}
+const editRide = index => {
+  const rides = getRides();
+  rides.splice(index, 1, updatedRide);
+  setRides(rides);
+
+  location.href = '..';
+};

@@ -55,7 +55,8 @@ ion-icon:hover {
 }
 
 @media (max-width: 560px) {
-  ion-icon {
+  ion-icon,
+  .menu-option span {
     display: none;
   }
 

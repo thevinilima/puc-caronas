@@ -10,6 +10,10 @@
   left: 0;
 }
 
+.top-bar .btn i {
+  color: #0f3e5c;
+}
+
 #week-days {
   display: flex;
   justify-content: space-between;
@@ -19,21 +23,27 @@
 
 .form-fields-row {
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
-#campus-field {
-  flex: 1;
+#time,
+#spaces {
+  width: 100px;
 }
 
-#address {
+#route-field {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
 }
 
 @media (max-width: 540px) {
-  #week-days,
-  #address {
+  #week-days {
     flex-direction: column;
+  }
+
+  .form-fields-row {
+    gap: 20px;
   }
 }

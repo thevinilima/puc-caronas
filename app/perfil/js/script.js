@@ -1,15 +1,17 @@
-// Inputs
-const nomeInput = document.getElementById('nome');
-const unidadeInput = document.getElementById('unidade');
-const turnoInput = document.getElementById('turno');
-const cursoInput = document.getElementById('curso');
-const bairroInput = document.getElementById('bairro');
-const regiaoInput = document.getElementById('regiao');
-const caronaStatusInputs = document.querySelectorAll(
-  'input[name="status-carona"]'
-);
+const nameInput = document.getElementById('name');
+const campusSelect = document.getElementById('campus');
+const classTimeSelect = document.getElementById('classTime');
+const courseInput = document.getElementById('course');
+const streetInput = document.getElementById('street');
+const numberInput = document.getElementById('number');
+const regionInput = document.getElementById('region');
+const statusRadio = document.querySelectorAll('input[name="status"]');
 
 const formEl = document.querySelector('form');
+const submitBtn = document.getElementById('submit');
+const deleteBtn = document.getElementById('delete-btn');
+
+document.body.onload = () => loadUser();
 
 const getUser = () => {
   return JSON.parse(localStorage.getItem('usuario'));
@@ -19,56 +21,77 @@ const setUser = user => {
   localStorage.setItem('usuario', JSON.stringify(user));
 };
 
-// Carrega informações
 const loadUser = () => {
   let user = getUser();
-  // Mock
   if (!user) {
     user = {
-      nome: 'Fulano',
-      unidade: 'Praça',
-      turno: 'Noite',
-      curso: 'Eng de Software',
-      bairro: 'Serra',
-      regiao: 'Centro-Sul',
+      name: 'Fulano',
+      campus: 'praca',
+      classTime: 'night',
+      course: 'Eng de Software',
+      address: {
+        street: 'Rua dos Bobos',
+        number: '0',
+        region: 'Nárnia',
+      },
       statusCarona: 'give',
     };
   }
 
-  nomeInput.value = user.nome;
-  unidadeInput.value = user.unidade;
-  turnoInput.value = user.turno;
-  cursoInput.value = user.curso;
-  bairroInput.value = user.bairro;
-  regiaoInput.value = user.regiao;
-  caronaStatusInputs.forEach(input => {
-    if (input.getAttribute('id') === user.statusCarona) input.checked = true;
+  nameInput.value = user.name;
+  campusSelect.value = user.campus;
+  classTimeSelect.value = user.classTime;
+  courseInput.value = user.course;
+  streetInput.value = user.address.street;
+  numberInput.value = user.address.number;
+  regionInput.value = user.address.region;
+  statusRadio.forEach(input => {
+    if (input.getAttribute('id') === user.status) input.checked = true;
   });
 };
 
-// Editar usuário
 formEl.addEventListener('submit', e => {
   e.preventDefault();
-  let statusCarona;
-  caronaStatusInputs.forEach(input => {
-    if (input.checked) statusCarona = input.value;
-  });
-  setUser({
-    nome: nomeInput.value,
-    unidade: unidadeInput.value,
-    turno: turnoInput.value,
-    curso: cursoInput.value,
-    bairro: bairroInput.value,
-    regiao: regiaoInput.value,
-    statusCarona,
-  });
+  try {
+    let status;
+    statusRadio.forEach(input => {
+      if (input.checked) status = input.value;
+    });
+
+    setUser({
+      name: nameInput.value,
+      campus: campusSelect.value,
+      classTime: classTimeSelect.value,
+      course: courseInput.value,
+      address: {
+        street: streetInput.value,
+        number: numberInput.value,
+        region: regionInput.value,
+      },
+      status,
+    });
+
+    submitBtn.classList.add('saved');
+    submitBtn.innerText = 'Salvo!';
+    setTimeout(() => {
+      submitBtn.classList.remove('saved');
+      submitBtn.innerText = 'Salvar';
+    }, 2 * 1000);
+  } catch (e) {
+    console.error(e);
+    submitBtn.classList.add('error');
+    submitBtn.innerText = 'Erro!';
+    setTimeout(() => {
+      submitBtn.classList.remove('error');
+      submitBtn.innerText = 'Salvar';
+    }, 2 * 1000);
+  }
 });
 
-// Deletar usuário
-const deleteUser = () => {
+deleteBtn.addEventListener('click', () => {
   if (window.confirm('Deseja excluir seu perfil?')) {
     setUser(null);
     loadUser();
   }
   if (!getUser()) window.alert('Perfil excluído com sucesso!');
-};
+});

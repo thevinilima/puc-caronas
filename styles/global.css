@@ -159,14 +159,24 @@ label {
   cursor: pointer;
 }
 
+input,
+select,
+option {
+  font-size: 0.9em;
+}
+
 input:not([type='radio']),
 select {
   width: 100%;
-  padding: 10px;
+  padding: 10px 5px;
   border: none;
   border-top: 1px solid #f0f0f0;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+input:not([type='radio']) {
+  padding: 10px;
 }
 
 input[type='radio'],
@@ -233,12 +243,15 @@ button:active,
 }
 
 .details-btn {
+  width: auto;
   padding: 5px;
   padding-right: 10px;
   background: none;
   border: none;
   color: var(--btn-blue);
   font-size: 1em;
+  font-weight: 500;
+  box-shadow: none;
   cursor: pointer;
 }
 

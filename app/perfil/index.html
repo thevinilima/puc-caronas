@@ -4,15 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../styles/global.css" />
-    <link rel="stylesheet" href="styles/perfil.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-    <title>Suas Informações</title>
+    <link
+      rel="shortcut icon"
+      href="../../assets/icons/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../styles/global.css" />
+    <link rel="stylesheet" href="../../styles/nav.css" />
+    <link rel="stylesheet" href="styles/perfil.css" />
+    <title>Perfil</title>
   </head>
-  <body onload="loadUser()">
+  <body>
     <header>
       <nav id="navigation">
         <ion-icon id="menu-mobile" name="menu-outline"></ion-icon>
@@ -35,83 +44,72 @@
       </nav>
     </header>
     <div class="container">
-      <h1 class="title">Suas Informações</h1>
+      <h1 class="title">Perfil</h1>
       <main>
         <form>
-          <div class="user-data">
-            <div class="data-info">
-              <h3>Nome</h3>
+          <div class="form-field">
+            <label for="name">Nome</label>
+            <input type="text" id="name" required />
+          </div>
+          <div class="form-fields-row">
+            <div class="puc-data">
+              <label for="campus">Unidade</label>
+              <select id="campus" required>
+                <option value="" disabled selected>Selecionar</option>
+                <option value="praca">Praça da Liberdade</option>
+                <option value="coreu">Coração Eucarístico</option>
+                <option value="sgabr">São Gabriel</option>
+              </select>
             </div>
-            <div class="data">
-              <input type="text" name="nome" id="nome" required />
+            <div class="puc-data">
+              <label for="classTime">Turno</label>
+              <select id="classTime" required>
+                <option value="" disabled selected>Selecionar</option>
+                <option value="morning">Manhã</option>
+                <option value="night">Noite</option>
+                <option value="fulltime">Integral</option>
+              </select>
             </div>
           </div>
-          <div class="user-data">
-            <div class="data-info">
-              <h3>Unidade</h3>
-            </div>
-            <div class="data">
-              <input type="text" name="unidade" id="unidade" required />
+          <div class="form-field">
+            <label for="course">Curso</label>
+            <input type="text" id="course" required />
+          </div>
+          <div class="form-field">
+            <label for="address">Endereço</label>
+            <div id="address">
+              <input type="text" id="street" placeholder="Rua" />
+              <input type="number" id="number" placeholder="N°" />
+              <input
+                type="text"
+                id="region"
+                placeholder="Bairro/Região"
+                required
+              />
             </div>
           </div>
-          <div class="user-data">
-            <div class="data-info">
-              <h3>Turno</h3>
+          <div class="form-field">
+            <label>Eu gostaria de</label>
+            <div>
+              <input
+                type="radio"
+                name="status"
+                id="give"
+                value="give"
+                required
+              />
+              <label for="give">Dar carona</label>
             </div>
-            <div class="data">
-              <input type="text" name="turno" id="turno" required />
-            </div>
-          </div>
-          <div class="user-data">
-            <div class="data-info">
-              <h3>Curso</h3>
-            </div>
-            <div class="data">
-              <input type="text" name="curso" id="curso" required />
-            </div>
-          </div>
-          <div class="user-data">
-            <div class="data-info">
-              <h3>Bairro</h3>
-            </div>
-            <div class="data">
-              <input type="text" name="bairro" id="bairro" required />
+            <div>
+              <input type="radio" name="status" id="get" value="get" />
+              <label for="get">Pegar carona</label>
             </div>
           </div>
-          <div class="user-data">
-            <div class="data-info">
-              <h3>Região</h3>
-            </div>
-            <div class="data">
-              <input type="text" name="regiao" id="regiao" required />
-            </div>
+          <button type="submit" id="submit">Salvar</button>
+          <div id="delete">
+            <button class="details-btn" id="delete-btn">Excluir perfil</button>
           </div>
-          <div class="user-data">
-            <div class="data-info">
-              <h3>Eu gostaria de</h3>
-            </div>
-            <div class="data">
-              <div class="row">
-                <input
-                  type="radio"
-                  name="status-carona"
-                  id="give"
-                  value="give"
-                  required
-                />
-                <label for="give">Dar carona</label>
-              </div>
-              <div class="row">
-                <input type="radio" name="status-carona" id="get" value="get" />
-                <label for="get">Pegar carona</label>
-              </div>
-            </div>
-          </div>
-          <button type="submit">Salvar</button>
         </form>
-        <div id="delete">
-          <button onclick="deleteUser()">Excluir perfil</button>
-        </div>
       </main>
     </div>
     <script
@@ -122,6 +120,9 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/nav.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

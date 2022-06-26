@@ -1,21 +1,46 @@
-.user-data {
-  margin-bottom: 40px;
+.form-fields-row {
+  display: flex;
+  gap: 10px;
 }
 
-.data-info {
-  margin-bottom: 10px;
+.puc-data:first-child {
+  flex: 0.6;
+}
+
+.puc-data:last-child {
+  flex: 0.4;
+}
+
+#address {
+  display: flex;
+  gap: 10px;
+}
+
+#street {
+  flex: 1;
+}
+
+#number {
+  flex: 0.2;
+}
+
+#region {
+  flex: 0.7;
 }
 
 #delete {
-  width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
-  padding: 0 5px;
 }
 
 #delete button {
-  background: none;
-  border: none;
-  color: #e98b7a;
+  color: #bd6c6c;
+}
+
+button.saved {
+  background-color: #70bcbe;
+}
+
+button.error {
+  background-color: #bd6c6c;
 }

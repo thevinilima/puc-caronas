@@ -98,6 +98,7 @@ main {
 .card .info {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 10px;
   padding-right: 10px;
 }
@@ -123,7 +124,9 @@ main {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  flex: 0.1;
+  height: 100%;
+  gap: 40px;
   padding-left: 10px;
 }
 
@@ -223,7 +226,7 @@ button:active,
   box-shadow: none;
   background: none;
   border: none;
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 .icon-btn:hover {

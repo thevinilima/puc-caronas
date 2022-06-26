@@ -84,6 +84,7 @@ function carregaRides() {
         `;
 
     const infoHTML = `
+      <h4>${ride.name} está dando carona</h4>
       <div class="row">  
         <div>
           <div class="icon">
@@ -96,6 +97,12 @@ function carregaRides() {
             <i class="fa-regular fa-clock"></i>
           </div>
           <span>${ride.time}</span>
+        </div>
+        <div>
+          <div class="icon">
+            <i class="fa-solid fa-user-group"></i>
+          </div>
+          <span>${ride.spaces} vaga${ride.spaces > 1 ? 's' : ''}</span>
         </div>
       </div>
       ${route}

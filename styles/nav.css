@@ -44,31 +44,6 @@ ion-icon:hover {
   background-color: #d1d9ff;
 }
 
-.mobileNav {
-  flex-direction: column;
-  height: auto;
-}
-
-.mobileItem {
-  display: block;
-  margin: 20px 0;
-}
-
-@media (max-width: 560px) {
-  ion-icon,
-  .menu-option span {
-    display: none;
-  }
-
-  #navigation {
-    justify-content: center;
-  }
-
-  #menu-mobile {
-    display: block;
-  }
-}
-
 footer {
   width: 100%;
   height: 600px;

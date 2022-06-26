@@ -1,58 +1,114 @@
-function setVagas(vagas) {
-  localStorage.setItem('vagas', JSON.stringify(vagas));
+const weekDays = {
+  mon: 'segunda',
+  tue: 'terça',
+  wed: 'quarta',
+  thu: 'quinta',
+  fri: 'sexta',
+};
+
+const campuses = {
+  praca: 'Praça da Liberdade',
+  coreu: 'Coração Eucarístico',
+  sgabr: 'São Gabriel',
+};
+
+document.body.onload = () => carregaRides();
+
+function setRides(rides) {
+  localStorage.setItem('rides', JSON.stringify(rides));
 }
 
-function getVagas() {
-  return JSON.parse(localStorage.getItem('vagas'));
+function getRides() {
+  return JSON.parse(localStorage.getItem('rides'));
 }
 
-function carregaVagas() {
-  const vagas = getVagas();
-  if (!vagas) return;
+function carregaRides() {
+  const rides = getRides();
+  if (!rides) return;
 
   const list = document.querySelector('.list');
   list.innerHTML = null;
 
-  vagas.forEach((vaga, index) => {
+  rides.forEach((ride, index) => {
     const item = document.createElement('div');
     item.classList.add('card');
 
     const info = document.createElement('div');
     info.classList.add('info');
+
+    const route =
+      ride.route === 'going'
+        ? `
+          <div>
+            <div class="icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <span>${ride.address.street} ${ride.address.number}, ${
+            ride.address.region
+          }</span>
+          </div>
+          <div>
+            <div class="icon">
+              <i class="fa-solid fa-angles-down"></i>
+            </div>
+            <span>indo</span>
+          </div>
+          <div>
+            <div class="icon">
+              <i class="fa-regular fa-building"></i>
+            </div>
+            <span>PUC ${campuses[ride.campus]}</span>
+          </div>
+        `
+        : `
+          <div>
+            <div class="icon">
+              <i class="fa-regular fa-building"></i>
+            </div>
+            <span>PUC ${campuses[ride.campus]}</span>
+          </div>
+          <div>
+            <div class="icon">
+              <i class="fa-solid fa-angles-down"></i>
+            </div>
+            <span>voltando</span>
+          </div>
+          <div>
+            <div class="icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <span>${ride.address.street} ${ride.address.number}, ${
+            ride.address.region
+          }</span>
+          </div>
+        `;
+
     const infoHTML = `
-      <div>
-        <div class="icon">
-          <i class="fa-regular fa-calendar"></i>
+      <div class="row">  
+        <div>
+          <div class="icon">
+            <i class="fa-regular fa-calendar"></i>
+          </div>
+          <span>${weekDays[ride.weekDay]}</span>
         </div>
-        <span>segunda-feira</span>
+        <div>
+          <div class="icon">
+            <i class="fa-regular fa-clock"></i>
+          </div>
+          <span>${ride.time}</span>
+        </div>
       </div>
-      <div>
-        <div class="icon">
-          <i class="fa-regular fa-clock"></i>
-        </div>
-        <span>22:30</span>
-      </div>
-      <div>
-        <div class="icon">
-          <i class="fa-regular fa-building"></i>
-        </div>
-        <span>PUC Praça da Liberdade</span>
-      </div>
-      <div>
-        <div class="icon">
-          <i class="fa-solid fa-location-dot"></i>
-        </div>
-        <span>Ruas dos Bobos, 0, Lindeza</span>
-      </div>`;
+      ${route}
+      `;
     info.insertAdjacentHTML('afterbegin', infoHTML);
 
     const actions = document.createElement('div');
     actions.classList.add('actions');
     actions.innerHTML = `
-      <button class="icon-btn edit-icon" title="Editar">
+      <button class="icon-btn edit-icon" title="Editar" onclick="handleEditRide(${index})">
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
-      <button class="icon-btn delete-icon" title="Apagar">
+      <button class="icon-btn delete-icon" title="Apagar" onclick="handleDeleteRide(${index})">
         <i class="fa-regular fa-circle-xmark"></i>
       </button>
     `;
@@ -64,58 +120,15 @@ function carregaVagas() {
   });
 }
 
-function handleEditarVaga(index) {
-  location.href = `form-rota.html?editar=${index}`;
+function handleEditRide(index) {
+  location.href = `criar/?editar=${index}`;
 }
 
-function calcular(val) {
-  var valor = $('#quantVagas').val();
-  if (valor - val !== 0 && valor - val !== 15) {
-    $('#quantVagas').val(valor - val);
+function handleDeleteRide(index) {
+  if (confirm('Deseja excluir essa carona?')) {
+    const rides = getRides();
+    rides.splice(index, 1);
+    setRides(rides);
+    carregaRides();
   }
-}
-
-function anunciarVaga() {
-  let titulo = $('#tVaga').val();
-  let saida = $('#endSaida').val();
-  let destino = $('#endDestino').val();
-  let desc = $('#Desc').val();
-  var valor = $('#quantVagas').val();
-
-  if (!titulo || !saida || !destino || !valor) {
-    alert('Preencha todos os campos obrigatórios!');
-    return;
-  }
-
-  alert(
-    'Título da Vaga: ' +
-      titulo +
-      ' Endereço de saída: ' +
-      saida +
-      ' Endereço de destino: ' +
-      destino +
-      ' Descrição:' +
-      desc +
-      ' Quantidade de vagas: ' +
-      valor
-  );
-
-  let vagas = getVagas();
-  if (!vagas) vagas = [];
-  vagas.push({
-    titulo,
-    saida,
-    destino,
-    desc,
-    valor,
-  });
-  setVagas(vagas);
-  location.href = 'caronas.html';
-}
-
-function deletarVaga(index) {
-  let vagas = getVagas();
-  vagas.splice(index, 1);
-  setVagas(vagas);
-  carregaVagas();
 }

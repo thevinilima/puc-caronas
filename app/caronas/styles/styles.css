@@ -7,3 +7,9 @@
     width: 100%;
   }
 }
+
+.row {
+  display: flex;
+  gap: 20px !important;
+  margin-bottom: 10px;
+}

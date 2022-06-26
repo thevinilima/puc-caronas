@@ -32,6 +32,7 @@ const checkEdition = () => {
   $('#time').val(ride.time);
   $('#spaces').val(ride.spaces);
   $(`input[name=route][value='${ride.route}']`).prop('checked', true);
+  $('#meetingPoint').val(ride.meetingPoint);
 };
 
 formEl.addEventListener('submit', e => {
@@ -43,6 +44,7 @@ formEl.addEventListener('submit', e => {
     const time = $('#time').val();
     const spaces = $('#spaces').val();
     const route = $('input[name=route]:checked', 'form').val();
+    const meetingPoint = $('#meetingPoint').val();
 
     const ride = {
       name: user.name,
@@ -52,6 +54,8 @@ formEl.addEventListener('submit', e => {
       route,
       time,
       spaces,
+      meetingPoint,
+      passengers: [],
     };
 
     if (edit.status) {

@@ -2,12 +2,6 @@
   width: 500px;
 }
 
-@media (max-width: 540px) {
-  .btn {
-    width: 100%;
-  }
-}
-
 .row {
   display: flex;
   gap: 20px !important;
@@ -16,4 +10,45 @@
 
 .info {
   cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content .row {
+  margin-bottom: 0;
+}
+
+.modal-content .row.meeting-point {
+  margin-top: 10px;
+}
+
+.modal-content .icon-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-content .route {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-btn {
+  margin-top: 10px;
+}
+
+.modal-btn i {
+  margin-right: 10px !important;
+}
+
+@media (max-width: 540px) {
+  .btn {
+    width: 100%;
+  }
 }

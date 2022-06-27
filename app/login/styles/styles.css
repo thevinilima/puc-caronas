@@ -21,18 +21,23 @@ label {
   text-align: center;
 }
 
-#login {
+#login-form {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px 0px #ccc;
 }
 
-#login h2 {
+#login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.warn-msg {
   text-align: center;
 }
 
 @media (max-width: 540px) {
-  #login {
+  #login-form {
     width: 100%;
   }
 }

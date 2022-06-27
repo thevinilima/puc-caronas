@@ -30,12 +30,15 @@
         <h3 class="upper">PUC Caronas</h3>
       </div>
       <main>
-        <div id="login">
+        <div id="login-form">
           <h2>Login</h2>
           <form>
+            <div class="warn-msg error hidden" id="login-error-msg">
+              Login e/ou senha incorretos
+            </div>
             <div class="form-field">
-              <label for="email">Email</label>
-              <input type="email" id="email" required />
+              <label for="email">Email ou Matrícula</label>
+              <input type="text" id="login" required />
             </div>
             <div class="form-field">
               <label for="pass">Senha</label>

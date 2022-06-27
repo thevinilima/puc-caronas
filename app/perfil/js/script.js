@@ -9,6 +9,7 @@ const statusRadio = document.querySelectorAll('input[name="status"]');
 
 const formEl = document.querySelector('form');
 const deleteBtn = document.getElementById('delete-btn');
+const logoutBtn = document.getElementById('logout-btn');
 
 document.body.onload = () => loadUser();
 
@@ -94,4 +95,11 @@ deleteBtn.addEventListener('click', () => {
     loadUser();
   }
   if (!getUser()) window.alert('Perfil excluído com sucesso!');
+});
+
+logoutBtn.addEventListener('click', () => {
+  if (confirm('Deseja encerrar sua sessão?')) {
+    localStorage.removeItem('user');
+    location.reload();
+  }
 });

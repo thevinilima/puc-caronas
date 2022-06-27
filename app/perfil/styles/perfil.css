@@ -1,3 +1,19 @@
+.top-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-bar button {
+  position: absolute;
+  right: 0;
+}
+
+.top-bar button i {
+  color: #0f3e5c;
+}
+
 .form-fields-row {
   display: flex;
   gap: 10px;

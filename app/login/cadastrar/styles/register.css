@@ -1,0 +1,20 @@
+.top-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.top-bar .btn {
+  position: absolute;
+  left: 0;
+}
+
+.top-bar .btn i {
+  color: #0f3e5c;
+}
+
+#user-exists-msg {
+  text-align: center;
+}

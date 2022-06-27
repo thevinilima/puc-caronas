@@ -48,6 +48,7 @@ h1,
 
 a {
   text-decoration: none;
+  color: var(--main-blue);
 }
 
 .upper {
@@ -258,7 +259,13 @@ button.saved {
 }
 
 button.error {
-  background-color: #bd6c6c;
+  background-color: var(--red);
+}
+
+div.error,
+span.error {
+  color: var(--red);
+  font-size: 0.9em;
 }
 
 .details-btn {
@@ -350,6 +357,10 @@ ul {
 
 .modal-content {
   padding: 20px;
+}
+
+.hidden {
+  display: none !important;
 }
 
 @media (max-width: 1024px) {

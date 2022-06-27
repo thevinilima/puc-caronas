@@ -1,13 +1,38 @@
-.divLogo {
-    display: flex;
-    justify-content: center;
-}
-.logo {
-    max-width: 250px;
-    margin: 20px;
+label {
+  cursor: default;
 }
 
-.divBotao {
-    display: flex;
-    justify-content: space-between;
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.btns {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btns a {
+  text-align: center;
+}
+
+#login {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px #ccc;
+}
+
+#login h2 {
+  text-align: center;
+}
+
+@media (max-width: 540px) {
+  #login {
+    width: 100%;
+  }
 }

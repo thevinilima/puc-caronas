@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="shortcut icon"
+      href="../../../assets/icons/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../../styles/global.css" />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="styles/register.css" />
+    <title>Cadastrar</title>
+  </head>
+  <body>
+    <div>
+      <div class="logo">
+        <img
+          src="../../../assets/img/logo.png"
+          alt="Logo PUC Caronas"
+          class="logo-md"
+        />
+      </div>
+      <main>
+        <div id="login">
+          <div class="top-bar">
+            <a href=".." class="btn icon-btn">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h2>Cadastrar</h2>
+          </div>
+          <form>
+            <div id="user-exists-msg" class="error hidden">
+              Esse email e/ou essa matrícula já foram cadastrados
+            </div>
+            <div class="form-field">
+              <label for="name">Nome</label>
+              <input type="text" id="name" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="form-field">
+              <label for="code">Matrícula</label>
+              <input type="number" id="code" required />
+            </div>
+            <div class="form-field">
+              <label for="pass">Senha</label>
+              <input type="password" id="pass" required />
+            </div>
+            <div class="form-field">
+              <label for="confirm-pass">Confirmar senha</label>
+              <input type="password" id="confirm-pass" required />
+              <div id="pass-warn" class="error hidden">
+                As senhas são diferentes
+              </div>
+            </div>
+            <div class="submit">
+              <button type="submit">Cadastrar</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../js/auth.js"></script>
+    <script src="js/register.js"></script>
+  </body>
+</html>

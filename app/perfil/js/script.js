@@ -100,6 +100,6 @@ deleteBtn.addEventListener('click', () => {
 logoutBtn.addEventListener('click', () => {
   if (confirm('Deseja encerrar sua sessão?')) {
     localStorage.removeItem('user');
-    location.reload();
+    checkAuth();
   }
 });

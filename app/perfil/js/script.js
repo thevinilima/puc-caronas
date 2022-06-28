@@ -38,13 +38,19 @@ const loadUser = () => {
     };
   }
 
+  if (localStorage.getItem('is_first_time')) {
+    $('.first-time-warn').removeClass('hidden');
+  }
+
   nameInput.value = user.name;
-  campusSelect.value = user.campus;
-  classTimeSelect.value = user.classTime;
-  courseInput.value = user.course;
-  streetInput.value = user.address.street;
-  numberInput.value = user.address.number;
-  regionInput.value = user.address.region;
+  campusSelect.value = user.campus || '';
+  classTimeSelect.value = user.classTime || '';
+  courseInput.value = user.course || '';
+  if (user.address) {
+    streetInput.value = user.address.street || '';
+    numberInput.value = user.address.number || '';
+    regionInput.value = user.address.region || '';
+  }
   statusRadio.forEach(input => {
     if (input.getAttribute('id') === user.status) input.checked = true;
   });
@@ -77,6 +83,9 @@ formEl.addEventListener('submit', e => {
     setTimeout(() => {
       submitBtn.classList.remove('saved');
       submitBtn.innerText = 'Salvar';
+      localStorage.removeItem('is_first_time');
+      $('.first-time-warn').addClass('hidden');
+      checkFirstTime();
     }, 2 * 1000);
   } catch (err) {
     console.error(err);
@@ -92,9 +101,9 @@ formEl.addEventListener('submit', e => {
 deleteBtn.addEventListener('click', () => {
   if (window.confirm('Deseja excluir seu perfil?')) {
     setUser(null);
-    loadUser();
   }
   if (!getUser()) window.alert('Perfil excluído com sucesso!');
+  checkAuth();
 });
 
 logoutBtn.addEventListener('click', () => {

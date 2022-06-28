@@ -1,24 +1,8 @@
-const menu = document.querySelector('#menu-mobile');
-const nav = document.querySelector('#navigation');
-const items = document.querySelectorAll('ion-icon');
-const html = document.querySelector('html');
+const headerEl = document.querySelector('header');
 
-let integrantes = document.querySelectorAll('.integrante');
-integrantes.forEach(integrante => {
-  integrante.addEventListener('click', () =>
-    github(integrante.attributes.name.value)
-  );
-});
+const checkFirstTime = () => {
+  if (localStorage.getItem('is_first_time')) headerEl.classList.add('hidden');
+  else headerEl.classList.remove('hidden');
+};
 
-function github(name) {
-  if (!name) {
-    alert('Este integrante não possui GitHub!');
-    return;
-  }
-  window.open('https://github.com/' + name, '_blank');
-}
-
-let subir = document.querySelector('#subir');
-subir.addEventListener('click', () => {
-  document.querySelector('footer').classList.toggle('footer-ativo');
-});
+checkFirstTime();

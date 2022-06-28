@@ -47,9 +47,9 @@ formEl.addEventListener('submit', e => {
     const meetingPoint = $('#meetingPoint').val();
 
     const ride = {
-      name: user.name,
-      campus: user.campus,
-      address: user.address,
+      campus: user.profile.campus,
+      address: user.profile.address,
+      type: user.profile.status,
       weekDay,
       route,
       time,
@@ -63,8 +63,11 @@ formEl.addEventListener('submit', e => {
       return;
     }
 
+    ride.id = generateId();
+    ride.userId = user.id;
+
     let rides = getRides();
-    if (rides && rides.length) rides.push(ride);
+    if (rides?.length) rides.push(ride);
     else rides = [ride];
 
     setRides(rides);
@@ -77,7 +80,7 @@ formEl.addEventListener('submit', e => {
       submitBtn.innerText = 'Anunciar';
       submitBtn.disabled = false;
       location.href = '..';
-    }, 2 * 1000);
+    }, 1 * 1000);
   } catch (err) {
     console.error(err);
     submitBtn.classList.add('error');
@@ -85,7 +88,7 @@ formEl.addEventListener('submit', e => {
     setTimeout(() => {
       submitBtn.classList.remove('error');
       submitBtn.innerText = 'Anunciar';
-    }, 2 * 1000);
+    }, 1 * 1000);
   }
 });
 
@@ -93,7 +96,7 @@ const editRide = ride => {
   const submitBtn = document.getElementById('submit');
   try {
     const rides = getRides();
-    rides.splice(edit.index, 1, ride);
+    rides.splice(edit.index, 1, { ...rides[edit.index], ride });
     setRides(rides);
 
     submitBtn.classList.add('saved');

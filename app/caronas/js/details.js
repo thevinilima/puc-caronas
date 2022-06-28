@@ -1,9 +1,12 @@
+const user = JSON.parse(localStorage.getItem('user'));
+
 const handleOpenModal = index => {
   const ride = getRides()[index];
   $('.modal').addClass('opened');
   document.body.style.overflow = 'hidden';
   const modalContentEl = document.querySelector('.modal-content');
 
+  const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
   const route =
     ride.route === 'going'
       ? `
@@ -12,9 +15,7 @@ const handleOpenModal = index => {
               <div class="icon">
                 <i class="fa-solid fa-location-dot"></i>
               </div>
-              <span>${ride.address.street} ${ride.address.number}, ${
-          ride.address.region
-        }</span>
+              <span>${addressStr}</span>
             </div>
             <div class="icon-info">
               <div class="icon">
@@ -48,28 +49,29 @@ const handleOpenModal = index => {
               <div class="icon">
                 <i class="fa-solid fa-location-dot"></i>
               </div>
-              <span>${ride.address.street} ${ride.address.number}, ${
-          ride.address.region
-        }</span>
+              <span>${addressStr}</span>
             </div>
           </div>
     `;
 
   const requests = getRequests();
-  const requestSent = requests && requests.some(r => r.userIndex === 0); // editar
+  const requestSent = requests?.some(
+    r => r.userId === user.id && r.rideId === ride.id
+  );
+  const rideCreator = getUsers().find(u => u.id === ride.userId);
   modalContentEl.innerHTML = `
     <div class="row">
       <div class="icon-info">
         <div class="icon">
           <i class="fa-solid fa-user"></i>
         </div>
-        <span>${ride.name}</span>
+        <span>${rideCreator.name}</span>
       </div>
       <div class="icon-info">
         <div class="icon">
           <i class="fa-solid fa-graduation-cap"></i>
         </div>
-        <span>Eng de Software</span>
+        <span>${rideCreator?.profile.course}</span>
       </div>
     </div>
     <div class="row">
@@ -92,14 +94,19 @@ const handleOpenModal = index => {
         <span>${ride.spaces} vaga${ride.spaces > 1 ? 's' : ''}</span>
       </div>
     </div>
-    <div class="row meeting-point">
-      <div class="icon-info">
-        <div class="icon">
-          <i class="fa-solid fa-people-arrows-left-right"></i>
-        </div>
-        <span>${ride.meetingPoint}</span>
-      </div>
-    </div>
+    ${
+      ride.meetingPoint
+        ? `
+        <div class="row meeting-point">
+          <div class="icon-info">
+            <div class="icon">
+              <i class="fa-solid fa-people-arrows-left-right"></i>
+            </div>
+            <span>${ride.meetingPoint}</span>
+          </div>
+        </div>`
+        : ''
+    }
     ${route}
     <div class="modal-btn">
       ${
@@ -111,7 +118,7 @@ const handleOpenModal = index => {
             </button>
           `
           : `
-            <button id="take-ride-btn" onclick="handleTakeRide(${index})">
+            <button id="take-ride-btn" onclick="handleTakeRide('${ride.id}')">
               <i class="fa-solid fa-car-side"></i>
               Pegar carona
             </button>
@@ -121,12 +128,12 @@ const handleOpenModal = index => {
   `;
 };
 
-const handleTakeRide = index => {
+const handleTakeRide = id => {
   const modalBtn = document.getElementById('take-ride-btn');
   try {
     const request = {
-      userIndex: 0, // editar
-      rideIndex: index,
+      rideId: id,
+      userId: user.id,
       seenBy: [],
     };
 

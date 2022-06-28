@@ -35,7 +35,9 @@ function loadRides() {
   if (!rides) return;
 
   const list = document.querySelector('.list');
-  list.innerHTML = null;
+  if (!rides.length)
+    list.innerHTML = '<div id="empty-msg">Nenhuma carona cadastrada :(</div>';
+  else list.innerHTML = null;
 
   rides.forEach((ride, index) => {
     const item = document.createElement('div');
@@ -45,6 +47,7 @@ function loadRides() {
     info.classList.add('info');
     info.setAttribute('onclick', `handleOpenModal(${index})`);
 
+    const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
     const route =
       ride.route === 'going'
         ? `
@@ -52,9 +55,7 @@ function loadRides() {
             <div class="icon">
               <i class="fa-solid fa-location-dot"></i>
             </div>
-            <span>${ride.address.street} ${ride.address.number}, ${
-            ride.address.region
-          }</span>
+            <span>${addressStr}</span>
           </div>
           <div>
             <div class="icon">
@@ -86,14 +87,17 @@ function loadRides() {
             <div class="icon">
               <i class="fa-solid fa-location-dot"></i>
             </div>
-            <span>${ride.address.street} ${ride.address.number}, ${
-            ride.address.region
-          }</span>
+            <span>${addressStr}</span>
           </div>
         `;
 
+    const rideCreator = getUsers().find(u => u.id === ride.userId);
     const infoHTML = `
-      <h4>${ride.name} está dando carona</h4>
+      <h4>
+        ${rideCreator.name} ${
+      ride.type === 'get' ? 'precisa de' : 'está dando'
+    } carona
+      </h4>
       <div class="row">  
         <div>
           <div class="icon">

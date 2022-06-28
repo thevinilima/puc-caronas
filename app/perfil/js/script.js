@@ -84,7 +84,7 @@ formEl.addEventListener('submit', e => {
       localStorage.removeItem('is_first_time');
       $('.first-time-warn').addClass('hidden');
       checkFirstTime();
-    }, 2 * 1000);
+    }, 1 * 1000);
   } catch (err) {
     console.error(err);
     $('#submit').addClass('error');
@@ -92,7 +92,7 @@ formEl.addEventListener('submit', e => {
     setTimeout(() => {
       $('#submit').removeClass('error');
       $('#submit').text('Salvar');
-    }, 2 * 1000);
+    }, 1 * 1000);
   }
 });
 

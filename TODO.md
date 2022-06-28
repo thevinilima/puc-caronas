@@ -1,6 +1,7 @@
 # TODO
 
 - [x] padronizar e melhorar css
-- [ ] utilizar scripts globais
-- [ ] refatorar login
+- [x] utilizar scripts globais
+- [x] refatorar login
 - [ ] interação entre usuários
+- [ ] usar cascade onde for necessário

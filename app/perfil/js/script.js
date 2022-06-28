@@ -22,38 +22,32 @@ const setUser = user => {
 };
 
 const loadUser = () => {
-  let user = getUser();
-  if (!user) {
-    user = {
-      name: 'Fulano',
-      campus: 'praca',
-      classTime: 'night',
-      course: 'Eng de Software',
-      address: {
-        street: 'Rua dos Bobos',
-        number: '0',
-        region: 'Nárnia',
-      },
-      statusCarona: 'give',
-    };
-  }
+  const user = getUser();
 
   if (localStorage.getItem('is_first_time')) {
     $('.first-time-warn').removeClass('hidden');
   }
 
   nameInput.value = user.name;
-  campusSelect.value = user.campus || '';
-  classTimeSelect.value = user.classTime || '';
-  courseInput.value = user.course || '';
-  if (user.address) {
-    streetInput.value = user.address.street || '';
-    numberInput.value = user.address.number || '';
-    regionInput.value = user.address.region || '';
+  campusSelect.value = user.profile.campus || '';
+  classTimeSelect.value = user.profile.classTime || '';
+  courseInput.value = user.profile.course || '';
+  if (user.profile.address) {
+    streetInput.value = user.profile.address.street || '';
+    numberInput.value = user.profile.address.number || '';
+    regionInput.value = user.profile.address.region || '';
   }
   statusRadio.forEach(input => {
-    if (input.getAttribute('id') === user.status) input.checked = true;
+    if (input.getAttribute('id') === user.profile.status) input.checked = true;
   });
+};
+
+const updateUserInDB = () => {
+  const user = getUser();
+  const db = JSON.parse(localStorage.getItem('db_users'));
+  const index = db.indexOf(u => u.id === user.id);
+  db.splice(index, 1, user);
+  localStorage.setItem('db_users', JSON.stringify(db));
 };
 
 formEl.addEventListener('submit', e => {
@@ -64,36 +58,40 @@ formEl.addEventListener('submit', e => {
       if (input.checked) status = input.value;
     });
 
+    const user = getUser();
     setUser({
+      ...user,
       name: nameInput.value,
-      campus: campusSelect.value,
-      classTime: classTimeSelect.value,
-      course: courseInput.value,
-      address: {
-        street: streetInput.value,
-        number: numberInput.value,
-        region: regionInput.value,
+      profile: {
+        campus: campusSelect.value,
+        classTime: classTimeSelect.value,
+        course: courseInput.value,
+        address: {
+          street: streetInput.value,
+          number: numberInput.value,
+          region: regionInput.value,
+        },
+        status,
       },
-      status,
     });
+    updateUserInDB();
 
-    const submitBtn = document.getElementById('submit');
-    submitBtn.classList.add('saved');
-    submitBtn.innerText = 'Salvo!';
+    $('#submit').addClass('saved');
+    $('#submit').text('Salvo!');
     setTimeout(() => {
-      submitBtn.classList.remove('saved');
-      submitBtn.innerText = 'Salvar';
+      $('#submit').removeClass('saved');
+      $('#submit').text('Salvar');
       localStorage.removeItem('is_first_time');
       $('.first-time-warn').addClass('hidden');
       checkFirstTime();
     }, 2 * 1000);
   } catch (err) {
     console.error(err);
-    submitBtn.classList.add('error');
-    submitBtn.innerText = 'Erro!';
+    $('#submit').addClass('error');
+    $('#submit').text('Erro!');
     setTimeout(() => {
-      submitBtn.classList.remove('error');
-      submitBtn.innerText = 'Salvar';
+      $('#submit').removeClass('error');
+      $('#submit').text('Salvar');
     }, 2 * 1000);
   }
 });

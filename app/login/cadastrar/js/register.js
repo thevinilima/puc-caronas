@@ -10,6 +10,7 @@ const insertUser = user => {
   )
     return false;
 
+  user.id = Math.random().toString(16).slice(2);
   users.push(user);
   localStorage.setItem('db_users', JSON.stringify(users));
   localStorage.setItem('is_first_time', true);
@@ -35,6 +36,7 @@ const registerUser = () => {
     email,
     code,
     pass,
+    profile: {},
   };
 
   if (insertUser(user)) {

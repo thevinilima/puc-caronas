@@ -45,9 +45,15 @@ const loadUser = () => {
 const updateUserInDB = () => {
   const user = getUser();
   const db = JSON.parse(localStorage.getItem('db_users'));
-  const index = db.indexOf(u => u.id === user.id);
-  db.splice(index, 1, user);
-  localStorage.setItem('db_users', JSON.stringify(db));
+  localStorage.setItem(
+    'db_users',
+    JSON.stringify(
+      db.map(u => {
+        if (u.id === user.id) return user;
+        return u;
+      })
+    )
+  );
 };
 
 formEl.addEventListener('submit', e => {

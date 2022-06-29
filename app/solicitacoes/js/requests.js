@@ -6,10 +6,9 @@ const loadRequests = () => {
   const userRequests = getRequests()?.reduce((arr, req) => {
     const ride = userRides.find(r => r.id === req.rideId);
     if (ride && req.status === 'pending')
-      return [...arr, { request: req, ride, user: getUser(req.userId) }];
+      return [...arr, { request: req, ride, creator: getUser(req.userId) }];
     return arr;
   }, []);
-  console.log(userRequests);
 
   const list = document.querySelector('.list');
 
@@ -19,19 +18,19 @@ const loadRequests = () => {
   }
   list.innerHTML = null;
 
-  userRequests.forEach((obj, index) => {
-    const { request, ride, user } = obj;
+  userRequests.forEach(obj => {
+    const { request, ride, creator } = obj;
     const item = document.createElement('div');
     item.classList.add('card');
 
     const info = document.createElement('div');
     info.classList.add('info');
-    info.setAttribute('onclick', `handleOpenModal(${index})`);
+    info.setAttribute('onclick', `handleOpenModal('${request.id}')`);
 
     const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
     const infoHTML = `
       <h4>
-        ${user.name} ${ride.type === 'get' ? 'ofereceu' : 'quer'} carona
+        ${creator.name} ${ride.type === 'get' ? 'te ofereceu' : 'pediu'} carona
       </h4>
       <div class="row">
         <div>
@@ -101,4 +100,12 @@ const handleAcceptRequest = id => {
   loadRequests();
 };
 
-const handleRejectRequest = id => {};
+const handleRejectRequest = id => {
+  const requests = getRequests();
+  const req = requests.find(req => req.id === id);
+  req.status = 'rejected';
+  const reqIndex = requests.indexOf(r => r.id === id);
+  requests.splice(reqIndex, 1, req);
+  setRequests(requests);
+  loadRequests();
+};

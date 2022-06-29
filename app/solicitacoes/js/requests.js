@@ -13,10 +13,11 @@ const loadRequests = () => {
 
   const list = document.querySelector('.list');
 
-  if (!userRequests.length) {
-    list.innerHTML = '<div id="empty-msg">Nenhuma solicitação nova :)</div>';
+  if (!userRequests || !userRequests.length) {
+    list.innerHTML = '<div class="empty-msg">Nenhuma solicitação nova :)</div>';
     return;
-  } else list.innerHTML = null;
+  }
+  list.innerHTML = null;
 
   userRequests.forEach((obj, index) => {
     const { request, ride, user } = obj;

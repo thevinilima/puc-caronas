@@ -91,6 +91,12 @@ ul {
   gap: 20px;
 }
 
+.empty-msg {
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+}
+
 .card {
   width: 100%;
   display: flex;

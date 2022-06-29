@@ -6,7 +6,8 @@ function loadRides() {
 
   const list = document.querySelector('.list');
   if (!rides.length)
-    list.innerHTML = '<div id="empty-msg">Nenhuma carona cadastrada :(</div>';
+    list.innerHTML =
+      '<div class="empty-msg">Nenhuma carona cadastrada :(</div>';
   else list.innerHTML = null;
 
   rides.forEach((ride, index) => {

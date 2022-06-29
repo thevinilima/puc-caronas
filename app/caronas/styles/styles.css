@@ -2,12 +2,6 @@
   width: 500px;
 }
 
-#empty-msg {
-  text-align: center;
-  font-size: 0.9em;
-  color: #777;
-}
-
 .info {
   cursor: pointer;
 }

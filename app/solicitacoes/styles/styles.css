@@ -1,3 +1,43 @@
 .info {
   cursor: pointer;
 }
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content .row {
+  margin-bottom: 0;
+  display: flex;
+  gap: 20px !important;
+}
+
+.modal-content .row.meeting-point {
+  margin-top: 10px;
+}
+
+.modal-content .icon-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-content .route {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-btn {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-btn i {
+  margin-right: 10px !important;
+}

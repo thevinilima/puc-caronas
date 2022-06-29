@@ -1,10 +1,9 @@
-const user = JSON.parse(localStorage.getItem('user'));
-
-const handleOpenModal = index => {
-  const ride = getRides()[index];
+const handleOpenModal = id => {
   $('.modal').addClass('opened');
   document.body.style.overflow = 'hidden';
-  const modalContentEl = document.querySelector('.modal-content');
+
+  const request = getRequests().find(r => r.id === id);
+  const ride = getRides().find(r => r.id === request.rideId);
 
   const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
   const route =
@@ -54,12 +53,8 @@ const handleOpenModal = index => {
           </div>
     `;
 
-  const requests = getRequests();
-  const requestSent = requests?.some(
-    r => r.userId === user.id && r.rideId === ride.id
-  );
   const rideCreator = getUser(ride.userId);
-  modalContentEl.innerHTML = `
+  $('.modal-content').html(`
     <div class="row">
       <div class="icon-info">
         <div class="icon">
@@ -109,57 +104,14 @@ const handleOpenModal = index => {
     }
     ${route}
     <div class="modal-btn">
-      ${
-        requestSent
-          ? `
-            <button id="take-ride-btn" class="outlined" disabled>
-              <i class="fa-solid fa-check"></i>
-              Pedido enviado
-            </button>
-          `
-          : `
-            <button id="take-ride-btn" onclick="handleTakeRide('${ride.id}')">
-              <i class="fa-solid fa-car-side"></i>
-              Pegar carona
-            </button>
-          `
-      }
+      <button id="take-ride-btn" class="saved">
+        <i class="fa-solid fa-user-check"></i>
+        Aceitar
+      </button>
+      <button id="take-ride-btn" class="error" onclick="">
+        <i class="fa-solid fa-user-xmark"></i>
+        Rejeitar
+      </button>
     </div>
-  `;
-};
-
-const handleTakeRide = id => {
-  const modalBtn = document.getElementById('take-ride-btn');
-  try {
-    const request = {
-      id: generateId(),
-      rideId: id,
-      userId: user.id,
-      seenBy: [],
-      status: 'pending',
-    };
-
-    let requests = getRequests();
-    if (requests) requests.push(request);
-    else requests = [request];
-    setRequests(requests);
-
-    modalBtn.classList.add('saved');
-    modalBtn.innerHTML = 'Pedido enviado!';
-    modalBtn.disabled = true;
-    setTimeout(() => {
-      modalBtn.classList.remove('saved');
-      modalBtn.innerText = 'Pegar carona';
-      modalBtn.disabled = false;
-      $('.modal').removeClass('opened');
-    }, 2 * 1000);
-  } catch (err) {
-    console.error(err);
-    modalBtn.classList.add('error');
-    modalBtn.innerHTML = 'Erro!';
-    setTimeout(() => {
-      modalBtn.classList.remove('error');
-      modalBtn.innerText = 'Pegar carona';
-    }, 2 * 1000);
-  }
+  `);
 };

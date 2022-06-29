@@ -8,12 +8,6 @@
   color: #777;
 }
 
-.row {
-  display: flex;
-  gap: 20px !important;
-  margin-bottom: 20px;
-}
-
 .info {
   cursor: pointer;
 }
@@ -26,6 +20,8 @@
 
 .modal-content .row {
   margin-bottom: 0;
+  display: flex;
+  gap: 20px !important;
 }
 
 .modal-content .row.meeting-point {

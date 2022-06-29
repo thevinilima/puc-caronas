@@ -78,6 +78,11 @@ main {
   margin-top: 20px;
 }
 
+/* -------------------------------- LISTS -------------------------------- */
+ul {
+  list-style-type: none;
+}
+
 .list {
   width: 500px;
   display: flex;
@@ -105,10 +110,32 @@ main {
   padding-right: 10px;
 }
 
-.card .info div {
+.card .info > div {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.card .info .row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card .info .row > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card .info .row.ride:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card .info .row:not(:last-child) {
+  margin-bottom: 20px;
 }
 
 .card .info div i {
@@ -126,9 +153,9 @@ main {
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
   flex: 0.1;
-  height: 100%;
-  gap: 40px;
   padding-left: 10px;
 }
 
@@ -143,6 +170,7 @@ main {
   background-image: linear-gradient(to top, #fefefe, #ccc, #fefefe);
 }
 
+/* -------------------------------- FORMS -------------------------------- */
 form {
   width: 500px;
   display: flex;
@@ -194,6 +222,7 @@ option {
   padding: 10px;
 }
 
+/* -------------------------------- BUTTONS -------------------------------- */
 button,
 .btn {
   display: flex;
@@ -287,10 +316,7 @@ span.error {
   color: var(--main-blue);
 }
 
-ul {
-  list-style-type: none;
-}
-
+/* -------------------------------- FONTS -------------------------------- */
 .weight-400 {
   font-weight: 400;
 }
@@ -307,6 +333,7 @@ ul {
   font-weight: 800;
 }
 
+/* -------------------------------- MODALS -------------------------------- */
 .modal {
   display: none;
   position: fixed;
@@ -365,6 +392,7 @@ ul {
   display: none !important;
 }
 
+/* -------------------------------- MEDIA QUERIES -------------------------------- */
 @media (max-width: 1024px) {
   main {
     padding: 20px;
@@ -376,5 +404,11 @@ ul {
   .list,
   .modal-box {
     width: 100%;
+  }
+
+  .row.route {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px !important;
   }
 }

@@ -11,10 +11,6 @@ const setRides = rides => {
   localStorage.setItem('rides', JSON.stringify(rides));
 };
 
-const getRides = () => {
-  return JSON.parse(localStorage.getItem('rides'));
-};
-
 const checkEdition = () => {
   const queryString = location.search;
   if (!queryString) return;
@@ -96,7 +92,7 @@ const editRide = ride => {
   const submitBtn = document.getElementById('submit');
   try {
     const rides = getRides();
-    rides.splice(edit.index, 1, { ...rides[edit.index], ride });
+    rides.splice(edit.index, 1, { ...rides[edit.index], ...ride });
     setRides(rides);
 
     submitBtn.classList.add('saved');
@@ -107,7 +103,7 @@ const editRide = ride => {
       submitBtn.innerText = 'Salvar';
       submitBtn.disabled = false;
       location.href = '..';
-    }, 2 * 1000);
+    }, 1 * 1000);
   } catch (err) {
     console.error(err);
     submitBtn.classList.add('error');
@@ -115,6 +111,6 @@ const editRide = ride => {
     setTimeout(() => {
       submitBtn.classList.remove('error');
       submitBtn.innerText = 'Salvar';
-    }, 2 * 1000);
+    }, 1 * 1000);
   }
 };

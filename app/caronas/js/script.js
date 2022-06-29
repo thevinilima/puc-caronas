@@ -1,25 +1,7 @@
-const weekDays = {
-  mon: 'segunda',
-  tue: 'terça',
-  wed: 'quarta',
-  thu: 'quinta',
-  fri: 'sexta',
-};
-
-const campuses = {
-  praca: 'Praça da Liberdade',
-  coreu: 'Coração Eucarístico',
-  sgabr: 'São Gabriel',
-};
-
 document.body.onload = () => loadRides();
 
 function setRides(rides) {
   localStorage.setItem('rides', JSON.stringify(rides));
-}
-
-function getRides() {
-  return JSON.parse(localStorage.getItem('rides'));
 }
 
 function setRequests(requests) {
@@ -48,49 +30,6 @@ function loadRides() {
     info.setAttribute('onclick', `handleOpenModal(${index})`);
 
     const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
-    const route =
-      ride.route === 'going'
-        ? `
-          <div>
-            <div class="icon">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <span>${addressStr}</span>
-          </div>
-          <div>
-            <div class="icon">
-              <i class="fa-solid fa-angles-down"></i>
-            </div>
-            <span>indo</span>
-          </div>
-          <div>
-            <div class="icon">
-              <i class="fa-regular fa-building"></i>
-            </div>
-            <span>PUC ${campuses[ride.campus]}</span>
-          </div>
-        `
-        : `
-          <div>
-            <div class="icon">
-              <i class="fa-regular fa-building"></i>
-            </div>
-            <span>PUC ${campuses[ride.campus]}</span>
-          </div>
-          <div>
-            <div class="icon">
-              <i class="fa-solid fa-angles-down"></i>
-            </div>
-            <span>voltando</span>
-          </div>
-          <div>
-            <div class="icon">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <span>${addressStr}</span>
-          </div>
-        `;
-
     const rideCreator = getUsers().find(u => u.id === ride.userId);
     const infoHTML = `
       <h4>
@@ -118,8 +57,21 @@ function loadRides() {
           <span>${ride.spaces} vaga${ride.spaces > 1 ? 's' : ''}</span>
         </div>
       </div>
-      ${route}
-      `;
+      <div class="row route">
+        <div>
+          <div class="icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <span>${addressStr}</span>
+        </div>
+        <div>
+          <div class="icon">
+            <i class="fa-solid fa-route"></i>
+          </div>
+          <span>${ride.route === 'going' ? 'ida' : 'volta'}</span>
+        </div>
+      </div>
+    `;
     info.insertAdjacentHTML('afterbegin', infoHTML);
 
     const actions = document.createElement('div');

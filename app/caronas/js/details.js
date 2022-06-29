@@ -132,9 +132,11 @@ const handleTakeRide = id => {
   const modalBtn = document.getElementById('take-ride-btn');
   try {
     const request = {
+      id: generateId(),
       rideId: id,
       userId: user.id,
       seenBy: [],
+      status: 'pending',
     };
 
     let requests = getRequests();

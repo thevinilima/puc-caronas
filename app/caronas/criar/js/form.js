@@ -7,10 +7,6 @@ const edit = {
 };
 document.body.onload = () => checkEdition();
 
-const setRides = rides => {
-  localStorage.setItem('rides', JSON.stringify(rides));
-};
-
 const checkEdition = () => {
   const queryString = location.search;
   if (!queryString) return;

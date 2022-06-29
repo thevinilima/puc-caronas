@@ -28,3 +28,15 @@ const getUser = id => {
 const getRides = () => {
   return JSON.parse(localStorage.getItem('rides'));
 };
+
+const setRides = rides => {
+  localStorage.setItem('rides', JSON.stringify(rides));
+};
+
+const getRequests = () => {
+  return JSON.parse(localStorage.getItem('requests'));
+};
+
+const setRequests = requests => {
+  localStorage.setItem('requests', JSON.stringify(requests));
+};

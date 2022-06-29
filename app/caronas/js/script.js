@@ -1,17 +1,5 @@
 document.body.onload = () => loadRides();
 
-function setRides(rides) {
-  localStorage.setItem('rides', JSON.stringify(rides));
-}
-
-function setRequests(requests) {
-  localStorage.setItem('requests', JSON.stringify(requests));
-}
-
-function getRequests() {
-  return JSON.parse(localStorage.getItem('requests'));
-}
-
 function loadRides() {
   const rides = getRides();
   if (!rides) return;
@@ -22,6 +10,7 @@ function loadRides() {
   else list.innerHTML = null;
 
   rides.forEach((ride, index) => {
+    if (!Number(ride.spaces)) return;
     const item = document.createElement('div');
     item.classList.add('card');
 

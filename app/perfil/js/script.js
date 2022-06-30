@@ -59,11 +59,6 @@ const updateUserInDB = () => {
 formEl.addEventListener('submit', e => {
   e.preventDefault();
   try {
-    let status;
-    statusRadio.forEach(input => {
-      if (input.checked) status = input.value;
-    });
-
     const user = getUser();
     setUser({
       ...user,
@@ -77,7 +72,6 @@ formEl.addEventListener('submit', e => {
           number: numberInput.value,
           region: regionInput.value,
         },
-        status,
       },
     });
     updateUserInDB();

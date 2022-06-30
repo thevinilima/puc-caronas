@@ -162,7 +162,9 @@ ul {
   justify-content: space-between;
   gap: 20px;
   flex: 0.1;
+  height: 100px;
   padding-left: 10px;
+  margin-left: 10px;
 }
 
 .card .actions::before {
@@ -337,6 +339,14 @@ span.error {
 
 .weight-800 {
   font-weight: 800;
+}
+
+.number-size {
+  font-size: 0.95em;
+}
+
+.smaller {
+  font-size: 0.9em;
 }
 
 /* -------------------------------- MODALS -------------------------------- */

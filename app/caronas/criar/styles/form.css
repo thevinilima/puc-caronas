@@ -31,7 +31,7 @@
   width: 100px;
 }
 
-#route-field {
+.row-field {
   display: flex;
   align-items: center;
   gap: 15px;

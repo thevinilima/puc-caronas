@@ -1,25 +1,22 @@
 const formEl = document.querySelector('form');
 const user = JSON.parse(localStorage.getItem('user'));
 
-const edit = {
-  status: false,
-  index: null,
-};
+let edit = false;
+let id = generateId();
 document.body.onload = () => checkEdition();
 
 const checkEdition = () => {
   const queryString = location.search;
   if (!queryString) return;
   const params = new URLSearchParams(queryString);
-  const index = params.get('editar');
+  id = params.get('editar');
+  edit = true;
 
-  edit.status = true;
-  edit.index = index;
-
-  const ride = getRides()[index];
+  const ride = getRides().find(ride => ride.id === id);
 
   $('h1').text('Editar Anúncio');
   $('#submit').text('Salvar');
+  $(`input[name=rideType][value='${ride.type}']`).prop('checked', true);
   $(`input[name=weekDay][value='${ride.weekDay}']`).prop('checked', true);
   $('#time').val(ride.time);
   $('#spaces').val(ride.spaces);
@@ -29,9 +26,8 @@ const checkEdition = () => {
 
 formEl.addEventListener('submit', e => {
   e.preventDefault();
-
-  const submitBtn = document.getElementById('submit');
   try {
+    const type = $('input[name=rideType]:checked', 'form').val();
     const weekDay = $('input[name=weekDay]:checked', 'form').val();
     const time = $('#time').val();
     const spaces = $('#spaces').val();
@@ -39,9 +35,10 @@ formEl.addEventListener('submit', e => {
     const meetingPoint = $('#meetingPoint').val();
 
     const ride = {
+      id,
       campus: user.profile.campus,
       address: user.profile.address,
-      type: user.profile.status,
+      type,
       weekDay,
       route,
       time,
@@ -50,7 +47,7 @@ formEl.addEventListener('submit', e => {
       passengers: [],
     };
 
-    if (edit.status) {
+    if (edit) {
       editRide(ride);
       return;
     }
@@ -64,49 +61,46 @@ formEl.addEventListener('submit', e => {
 
     setRides(rides);
 
-    submitBtn.classList.add('saved');
-    submitBtn.innerText = 'Anúncio feito!';
-    submitBtn.disabled = true;
+    $('#submit').addClass('saved');
+    $('#submit').text('Anúncio feito!');
+    $('#submit').prop('disabled', true);
     setTimeout(() => {
-      submitBtn.classList.remove('saved');
-      submitBtn.innerText = 'Anunciar';
-      submitBtn.disabled = false;
       location.href = '..';
     }, 1 * 1000);
   } catch (err) {
     console.error(err);
-    submitBtn.classList.add('error');
-    submitBtn.innerText = 'Erro!';
+    $('#submit').addClass('error');
+    $('#submit').text('Erro!');
     setTimeout(() => {
-      submitBtn.classList.remove('error');
-      submitBtn.innerText = 'Anunciar';
+      $('#submit').removeClass('error');
+      $('#submit').text('Anunciar');
     }, 1 * 1000);
   }
 });
 
 const editRide = ride => {
-  const submitBtn = document.getElementById('submit');
   try {
     const rides = getRides();
-    rides.splice(edit.index, 1, { ...rides[edit.index], ...ride });
-    setRides(rides);
+    setRides(
+      rides.map(r => {
+        if (r.id === ride.id) return { ...r, ...ride };
+        return r;
+      })
+    );
 
-    submitBtn.classList.add('saved');
-    submitBtn.innerText = 'Salvo!';
-    submitBtn.disabled = true;
+    $('#submit').addClass('saved');
+    $('#submit').text('Salvo!');
+    $('#submit').prop('disabled', true);
     setTimeout(() => {
-      submitBtn.classList.remove('saved');
-      submitBtn.innerText = 'Salvar';
-      submitBtn.disabled = false;
-      location.href = '..';
+      // location.href = '..';
     }, 1 * 1000);
   } catch (err) {
     console.error(err);
-    submitBtn.classList.add('error');
-    submitBtn.innerText = 'Erro!';
+    $('#submit').addClass('error');
+    $('#submit').text('Erro!');
     setTimeout(() => {
-      submitBtn.classList.remove('error');
-      submitBtn.innerText = 'Salvar';
+      $('#submit').removeClass('error');
+      $('#submit').text('Salvar');
     }, 1 * 1000);
   }
 };

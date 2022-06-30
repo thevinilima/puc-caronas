@@ -39,7 +39,7 @@ const handleOpenModal = index => {
               </div>
               <span>PUC ${campuses[ride.campus]}</span>
             </div>
-            <div class="icon-info">
+            <div class="icon-info smaller">
               <div class="icon">
                 <i class="fa-solid fa-angles-down"></i>
               </div>
@@ -85,7 +85,7 @@ const handleOpenModal = index => {
         <div class="icon">
           <i class="fa-regular fa-clock"></i>
         </div>
-        <span>${ride.time}</span>
+        <span class="number-size">${ride.time}</span>
       </div>
       <div class="icon-info">
         <div class="icon">
@@ -110,18 +110,39 @@ const handleOpenModal = index => {
     ${route}
     <div class="modal-btn">
       ${
-        requestSent
-          ? `
+        rideCreator.id !== user.id
+          ? requestSent
+            ? `
             <button id="take-ride-btn" class="outlined" disabled>
               <i class="fa-solid fa-check"></i>
               Pedido enviado
             </button>
           `
+            : `${
+                ride.type === 'get'
+                  ? `
+              <button id="take-ride-btn" onclick="handleTakeRide('${ride.id}')">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                Dar carona
+              </button>
+            `
+                  : `
+              <button id="take-ride-btn" onclick="handleTakeRide('${ride.id}')">
+                <i class="fa-solid fa-car-side"></i>
+                Pegar carona
+              </button>
+            `
+              }
+          `
           : `
-            <button id="take-ride-btn" onclick="handleTakeRide('${ride.id}')">
-              <i class="fa-solid fa-car-side"></i>
-              Pegar carona
-            </button>
+          <button id="take-ride-btn" onclick="handleEditRide('${ride.id}')">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Editar
+          </button>
+          <button id="take-ride-btn" class="error" onclick="handleDeleteRide('${ride.id}')">
+            <i class="fa-regular fa-circle-xmark"></i>
+            Apagar
+          </button>
           `
       }
     </div>

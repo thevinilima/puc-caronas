@@ -12,6 +12,11 @@ function loadRides() {
 
   rides.forEach((ride, index) => {
     if (!Number(ride.spaces)) return;
+
+    const rideCreator = getUser(ride.userId);
+    const currUser = getUser();
+    if (currUser.profile.campus !== rideCreator.profile.campus) return;
+
     const item = document.createElement('div');
     item.classList.add('card');
 
@@ -20,7 +25,7 @@ function loadRides() {
     info.setAttribute('onclick', `handleOpenModal(${index})`);
 
     const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
-    const rideCreator = getUsers().find(u => u.id === ride.userId);
+
     const infoHTML = `
       <h4>
         ${rideCreator.name} ${
@@ -38,7 +43,7 @@ function loadRides() {
           <div class="icon">
             <i class="fa-regular fa-clock"></i>
           </div>
-          <span>${ride.time}</span>
+          <span class="number-size">${ride.time}</span>
         </div>
         <div>
           <div class="icon">
@@ -52,7 +57,7 @@ function loadRides() {
           <div class="icon">
             <i class="fa-solid fa-location-dot"></i>
           </div>
-          <span>${addressStr}</span>
+          <div class="address">${addressStr}</div>
         </div>
         <div>
           <div class="icon">
@@ -63,20 +68,26 @@ function loadRides() {
       </div>
     `;
     info.insertAdjacentHTML('afterbegin', infoHTML);
+    item.appendChild(info);
 
-    const actions = document.createElement('div');
-    actions.classList.add('actions');
-    actions.innerHTML = `
-      <button class="icon-btn edit-icon" title="Editar" onclick="handleEditRide(${index})">
+    const actionsHTML =
+      ride.userId === currUser.id
+        ? `
+      <button class="icon-btn edit-icon" title="Editar" onclick="handleEditRide('${ride.id}')">
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
-      <button class="icon-btn delete-icon" title="Apagar" onclick="handleDeleteRide(${index})">
+      <button class="icon-btn delete-icon" title="Apagar" onclick="handleDeleteRide('${ride.id}')">
         <i class="fa-regular fa-circle-xmark"></i>
       </button>
-    `;
+    `
+        : null;
+    if (actionsHTML) {
+      const actions = document.createElement('div');
+      actions.classList.add('actions');
+      actions.innerHTML = actionsHTML;
 
-    item.appendChild(info);
-    item.appendChild(actions);
+      item.appendChild(actions);
+    }
 
     list.appendChild(item);
   });

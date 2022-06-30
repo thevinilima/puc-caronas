@@ -39,7 +39,7 @@
         </a>
         <a href="../../perfil/" class="menu-option">
           <ion-icon name="person-outline"></ion-icon>
-          <span class="hidden">Perfil</span>
+          <span>Perfil</span>
         </a>
       </nav>
     </header>
@@ -94,7 +94,7 @@
             </div>
             <div class="form-field">
               <label for="route">Percurso</label>
-              <div id="route-field">
+              <div class="row-field">
                 <div>
                   <input
                     type="radio"
@@ -109,6 +109,25 @@
                   <input type="radio" id="back" value="back" name="route" />
                   <label for="back">volta</label>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Eu gostaria de</label>
+            <div class="row-field">
+              <div>
+                <input
+                  type="radio"
+                  name="rideType"
+                  id="give"
+                  value="give"
+                  required
+                />
+                <label for="give">dar carona</label>
+              </div>
+              <div>
+                <input type="radio" name="rideType" id="get" value="get" />
+                <label for="get">pegar carona</label>
               </div>
             </div>
           </div>

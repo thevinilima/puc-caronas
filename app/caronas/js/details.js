@@ -1,10 +1,22 @@
 const user = JSON.parse(localStorage.getItem('user'));
 
-const handleOpenModal = index => {
-  const ride = getRides()[index];
+const handleOpenModal = id => {
+  const ride = getRides().find(ride => ride.id === id);
   $('.modal').addClass('opened');
   document.body.style.overflow = 'hidden';
   const modalContentEl = document.querySelector('.modal-content');
+
+  const passengers = ride.passengers.map(passenger => {
+    const p = getUser(passenger);
+
+    return `
+        <tr>
+          <td class="name">${p.name}</td>
+          <td>${p.code}</td>
+          <td>${p.profile.course}</td>
+        </tr>
+      `;
+  });
 
   const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
   const route =
@@ -108,6 +120,31 @@ const handleOpenModal = index => {
         : ''
     }
     ${route}
+    ${
+      rideCreator.id === user.id
+        ? `
+        <div class="modal-passengers-list">
+          <h4>Passageiros</h4>
+          ${
+            passengers.length
+              ? `
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Curso</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${passengers}
+            </tbody>
+          </table>`
+              : '<div class="empty-msg">Nenhum passageiro</div>'
+          }
+        </div>`
+        : ''
+    }
     <div class="modal-btn">
       ${
         rideCreator.id !== user.id

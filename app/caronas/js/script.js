@@ -1,8 +1,22 @@
 document.body.onload = () => loadRides();
 
 function loadRides() {
-  const rides = getRides();
-  if (!rides) return;
+  const storedRides = getRides();
+  if (!storedRides) return;
+
+  const currUser = getUser();
+  const rides = storedRides
+    .filter(
+      ride =>
+        (getUser(ride.userId).profile.campus === currUser.profile.campus &&
+          Number(ride.spaces)) ||
+        ride.passengers.some(p => p === currUser.id) ||
+        ride.userId === currUser.id
+    )
+    .sort((curr, next) => {
+      if (curr.userId === currUser.id && next.userId !== currUser.id) return -1;
+      return 1;
+    });
 
   const list = document.querySelector('.list');
   if (!rides.length)
@@ -10,19 +24,15 @@ function loadRides() {
       '<div class="empty-msg">Nenhuma carona cadastrada :(</div>';
   else list.innerHTML = null;
 
-  rides.forEach((ride, index) => {
-    if (!Number(ride.spaces)) return;
-
+  rides.forEach(ride => {
     const rideCreator = getUser(ride.userId);
-    const currUser = getUser();
-    if (currUser.profile.campus !== rideCreator.profile.campus) return;
 
     const item = document.createElement('div');
     item.classList.add('card');
 
     const info = document.createElement('div');
     info.classList.add('info');
-    info.setAttribute('onclick', `handleOpenModal(${index})`);
+    info.setAttribute('onclick', `handleOpenModal('${ride.id}')`);
 
     const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
 
@@ -93,15 +103,14 @@ function loadRides() {
   });
 }
 
-function handleEditRide(index) {
-  location.href = `criar/?editar=${index}`;
+function handleEditRide(id) {
+  location.href = `criar/?editar=${id}`;
 }
 
-function handleDeleteRide(index) {
+function handleDeleteRide(id) {
   if (confirm('Deseja excluir essa carona?')) {
     const rides = getRides();
-    rides.splice(index, 1);
-    setRides(rides);
+    setRides(rides.filter(ride => ride.id !== id));
     loadRides();
   }
 }

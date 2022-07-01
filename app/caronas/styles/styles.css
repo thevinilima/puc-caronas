@@ -35,6 +35,31 @@
   gap: 10px;
 }
 
+.modal-passengers-list {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-passengers-list table {
+  width: 100%;
+  padding-left: 5px;
+}
+
+.modal-passengers-list table th,
+.modal-passengers-list table td {
+  text-align: left;
+  font-size: 0.9em;
+}
+
+.modal-passengers-list table td.name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .modal-btn {
   margin-top: 10px;
   display: flex;

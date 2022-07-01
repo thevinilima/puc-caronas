@@ -124,7 +124,7 @@ const handleOpenModal = id => {
       rideCreator.id === user.id
         ? `
         <div class="modal-passengers-list">
-          <h4>Passageiros</h4>
+          <h4>Passageiros/Condutores</h4>
           ${
             passengers.length
               ? `
@@ -140,7 +140,7 @@ const handleOpenModal = id => {
               ${passengers}
             </tbody>
           </table>`
-              : '<div class="empty-msg">Nenhum passageiro</div>'
+              : '<div class="empty-msg">Nenhum passageiro ou condutor</div>'
           }
         </div>`
         : ''

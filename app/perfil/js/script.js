@@ -13,10 +13,6 @@ const logoutBtn = document.getElementById('logout-btn');
 
 document.body.onload = () => loadUser();
 
-const getUser = () => {
-  return JSON.parse(localStorage.getItem('user'));
-};
-
 const setUser = user => {
   localStorage.setItem('user', JSON.stringify(user));
 };
@@ -92,13 +88,26 @@ formEl.addEventListener('submit', e => {
     setTimeout(() => {
       $('#submit').removeClass('error');
       $('#submit').text('Salvar');
-    }, 1 * 1000);
+    }, 1 * 2000);
   }
 });
 
 deleteBtn.addEventListener('click', () => {
   if (window.confirm('Deseja excluir seu perfil?')) {
+    const user = getUser();
     setUser(null);
+    const db = getUsers();
+    localStorage.setItem(
+      'db_users',
+      JSON.stringify(
+        db
+          .map(u => {
+            if (u.id === user.id) return null;
+            return u;
+          })
+          .filter(u => u)
+      )
+    );
   }
   if (!getUser()) window.alert('Perfil excluído com sucesso!');
   checkAuth();

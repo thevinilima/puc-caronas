@@ -81,21 +81,33 @@ const loadRequests = () => {
   });
 };
 
-// corrigir - trocar pra map
 const handleAcceptRequest = id => {
   const requests = getRequests();
   const req = requests.find(req => req.id === id);
   req.status = 'accepted';
 
+  setRequests(
+    requests.map(request => {
+      if (request.id === id) return req;
+      return request;
+    })
+  );
+
   closeModal();
   loadRequests();
 };
 
-// corrigir - trocar pra map
 const handleRejectRequest = id => {
   const requests = getRequests();
   const req = requests.find(req => req.id === id);
   req.status = 'rejected';
+
+  setRequests(
+    requests.map(request => {
+      if (request.id === id) return req;
+      return request;
+    })
+  );
 
   closeModal();
   loadRequests();

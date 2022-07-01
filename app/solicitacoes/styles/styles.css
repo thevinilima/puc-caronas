@@ -31,6 +31,10 @@
   gap: 10px;
 }
 
+.modal-content #user-info {
+  margin-bottom: 10px;
+}
+
 .modal-btn {
   margin-top: 10px;
   display: flex;

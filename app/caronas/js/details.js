@@ -210,7 +210,7 @@ const handleTakeRide = id => {
       modalBtn.innerText = 'Pegar carona';
       modalBtn.disabled = false;
       $('.modal').removeClass('opened');
-    }, 2 * 1000);
+    }, 1 * 1000);
   } catch (err) {
     console.error(err);
     modalBtn.classList.add('error');
@@ -218,6 +218,6 @@ const handleTakeRide = id => {
     setTimeout(() => {
       modalBtn.classList.remove('error');
       modalBtn.innerText = 'Pegar carona';
-    }, 2 * 1000);
+    }, 1 * 1000);
   }
 };

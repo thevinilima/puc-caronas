@@ -1,14 +1,13 @@
 const modalEl = document.querySelector('.modal');
 const closeBtn = document.querySelector('.close-modal');
 
-document.addEventListener('click', e => {
-  if (e.target === modalEl) {
-    modalEl.classList.remove('opened');
-    document.body.style.overflow = 'auto';
-  }
-});
-
-closeBtn.addEventListener('click', () => {
+const closeModal = () => {
   modalEl.classList.remove('opened');
   document.body.style.overflow = 'auto';
+};
+
+document.addEventListener('click', e => {
+  if (e.target === modalEl) closeModal();
 });
+
+closeBtn.addEventListener('click', closeModal);

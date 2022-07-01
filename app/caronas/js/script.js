@@ -104,6 +104,7 @@ function loadRides() {
 }
 
 function handleEditRide(id) {
+  closeModal();
   location.href = `criar/?editar=${id}`;
 }
 
@@ -111,6 +112,8 @@ function handleDeleteRide(id) {
   if (confirm('Deseja excluir essa carona?')) {
     const rides = getRides();
     setRides(rides.filter(ride => ride.id !== id));
+
+    closeModal();
     loadRides();
   }
 }

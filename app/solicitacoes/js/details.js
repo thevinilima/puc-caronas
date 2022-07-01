@@ -53,20 +53,23 @@ const handleOpenModal = id => {
           </div>
     `;
 
-  const rideCreator = getUser(ride.userId);
+  const reqCreator = getUser(request.userId);
   $('.modal-content').html(`
-    <div class="row">
+    <h4>
+      ${reqCreator.name} ${ride.type === 'get' ? 'te ofereceu' : 'pediu'} carona
+    </h4>
+    <div class="row" id="user-info">
       <div class="icon-info">
         <div class="icon">
-          <i class="fa-solid fa-user"></i>
+          <i class="fa-solid fa-id-card"></i>
         </div>
-        <span>${rideCreator.name}</span>
+        <span>${reqCreator.code}</span>
       </div>
       <div class="icon-info">
         <div class="icon">
           <i class="fa-solid fa-graduation-cap"></i>
         </div>
-        <span>${rideCreator?.profile.course}</span>
+        <span>${reqCreator.profile.course}</span>
       </div>
     </div>
     <div class="row">
@@ -104,11 +107,11 @@ const handleOpenModal = id => {
     }
     ${route}
     <div class="modal-btn">
-      <button id="take-ride-btn" class="saved">
+      <button id="take-ride-btn" class="saved" onclick="handleAcceptRequest('${id}')">
         <i class="fa-solid fa-user-check"></i>
         Aceitar
       </button>
-      <button id="take-ride-btn" class="error" onclick="">
+      <button id="take-ride-btn" class="error" onclick="handleRejectRequest('${id}')">
         <i class="fa-solid fa-user-xmark"></i>
         Rejeitar
       </button>

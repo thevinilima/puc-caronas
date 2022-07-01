@@ -81,6 +81,7 @@ const loadRequests = () => {
   });
 };
 
+// corrigir - trocar pra map
 const handleAcceptRequest = id => {
   const requests = getRequests();
   const req = requests.find(req => req.id === id);
@@ -97,9 +98,11 @@ const handleAcceptRequest = id => {
   rides.splice(rideIndex, 1, ride);
   setRides(rides);
 
+  closeModal();
   loadRequests();
 };
 
+// corrigir - trocar pra map
 const handleRejectRequest = id => {
   const requests = getRequests();
   const req = requests.find(req => req.id === id);
@@ -107,5 +110,7 @@ const handleRejectRequest = id => {
   const reqIndex = requests.indexOf(r => r.id === id);
   requests.splice(reqIndex, 1, req);
   setRequests(requests);
+
+  closeModal();
   loadRequests();
 };

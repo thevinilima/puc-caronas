@@ -86,17 +86,6 @@ const handleAcceptRequest = id => {
   const requests = getRequests();
   const req = requests.find(req => req.id === id);
   req.status = 'accepted';
-  const reqIndex = requests.indexOf(r => r.id === id);
-  requests.splice(reqIndex, 1, req);
-  setRequests(requests);
-
-  const rides = getRides();
-  const ride = rides.find(ride => ride.id === req.rideId);
-  ride.passengers.push(req.userId);
-  ride.spaces = Number(ride.spaces) - 1;
-  const rideIndex = rides.indexOf(r => r.id === ride.id);
-  rides.splice(rideIndex, 1, ride);
-  setRides(rides);
 
   closeModal();
   loadRequests();
@@ -107,9 +96,6 @@ const handleRejectRequest = id => {
   const requests = getRequests();
   const req = requests.find(req => req.id === id);
   req.status = 'rejected';
-  const reqIndex = requests.indexOf(r => r.id === id);
-  requests.splice(reqIndex, 1, req);
-  setRequests(requests);
 
   closeModal();
   loadRequests();

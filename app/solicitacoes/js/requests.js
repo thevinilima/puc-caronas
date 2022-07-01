@@ -93,6 +93,17 @@ const handleAcceptRequest = id => {
     })
   );
 
+  const rides = getRides();
+  const ride = rides.find(r => r.id === req.rideId);
+  ride.passengers.push(req.userId);
+  ride.spaces = Number(ride.spaces) - 1;
+  setRides(
+    rides.map(r => {
+      if (r.id === ride.id) return ride;
+      return r;
+    })
+  );
+
   closeModal();
   loadRequests();
 };

@@ -10,6 +10,7 @@ const campuses = {
   praca: 'Praça da Liberdade',
   coreu: 'Coração Eucarístico',
   sgabr: 'São Gabriel',
+  barr: 'Barreiro',
 };
 
 const generateId = () => {

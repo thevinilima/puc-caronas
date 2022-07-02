@@ -16,7 +16,10 @@
       Habilite o JavaScript ou verifique sua conexão para usar esse site
     </div>
     <script>
-      location.href += 'app/home/';
+      const path = location.pathname.split('/');
+      path.pop();
+      path.push('app', 'home', '');
+      location.pathname = path.join('/');
     </script>
   </body>
 </html>

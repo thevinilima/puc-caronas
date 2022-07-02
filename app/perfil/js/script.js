@@ -93,24 +93,36 @@ formEl.addEventListener('submit', e => {
 });
 
 deleteBtn.addEventListener('click', () => {
-  if (window.confirm('Deseja excluir seu perfil?')) {
+  try {
     const user = getUser();
-    setUser(null);
-    const db = getUsers();
-    localStorage.setItem(
-      'db_users',
-      JSON.stringify(
-        db
-          .map(u => {
-            if (u.id === user.id) return null;
-            return u;
-          })
-          .filter(u => u)
-      )
-    );
+    if (window.confirm('Deseja excluir seu perfil?')) {
+      localStorage.removeItem('user');
+      const db = getUsers();
+      localStorage.setItem(
+        'db_users',
+        JSON.stringify(db.filter(u => u.id !== user.id))
+      );
+    }
+    if (!getUser() && !getUsers().some(u => u.id === user.id)) {
+      let requests = getRequests();
+      setRides(
+        getRides()?.filter(ride => {
+          if (ride.userId === user.id) {
+            requests = requests?.filter(req => req.rideId !== ride.id);
+            return false;
+          }
+          return true;
+        }) || []
+      );
+      setRequests(requests?.filter(req => req.userId !== user.id) || []);
+
+      window.alert('Perfil excluído com sucesso!');
+      checkAuth();
+    }
+  } catch (err) {
+    console.error(err);
+    window.alert('Erro ao excluir perfil');
   }
-  if (!getUser()) window.alert('Perfil excluído com sucesso!');
-  checkAuth();
 });
 
 logoutBtn.addEventListener('click', () => {

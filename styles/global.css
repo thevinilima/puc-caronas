@@ -261,8 +261,8 @@ button:disabled {
   box-shadow: none;
 }
 
-button i:not(.icon-btn),
-.btn i:not(.icon-btn) {
+button:not(.icon-btn) i,
+.btn:not(.icon-btn) i {
   margin-right: 5px;
 }
 

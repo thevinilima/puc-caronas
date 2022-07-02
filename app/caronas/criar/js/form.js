@@ -12,7 +12,7 @@ const checkEdition = () => {
   id = params.get('editar');
   edit = true;
 
-  const ride = getRides().find(ride => ride.id === id);
+  const ride = getRide(id);
 
   $('h1').text('Editar Anúncio');
   $('#submit').text('Salvar');

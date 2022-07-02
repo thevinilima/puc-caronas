@@ -1,7 +1,7 @@
-const user = JSON.parse(localStorage.getItem('user'));
+const user = getUser();
 
 const handleOpenModal = id => {
-  const ride = getRides().find(ride => ride.id === id);
+  const ride = getRide(id);
   $('.modal').addClass('opened');
   document.body.style.overflow = 'hidden';
   const modalContentEl = document.querySelector('.modal-content');
@@ -67,10 +67,59 @@ const handleOpenModal = id => {
     `;
 
   const requests = getRequests();
-  const requestSent = requests?.some(
-    r => r.userId === user.id && r.rideId === ride.id
-  );
   const rideCreator = getUser(ride.userId);
+
+  const generateModalButton = () => {
+    if (rideCreator.id === user.id)
+      return `
+          <button id="take-ride-btn" onclick="handleEditRide('${ride.id}')">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Editar
+          </button>
+          <button id="take-ride-btn" class="error" onclick="handleDeleteRide('${ride.id}')">
+            <i class="fa-regular fa-circle-xmark"></i>
+            Apagar
+          </button>
+        `;
+
+    if (
+      requests.some(
+        r =>
+          r.userId === user.id && r.rideId === ride.id && r.status === 'pending'
+      )
+    )
+      return `
+          <button id="take-ride-btn" class="outlined" disabled>
+            <i class="fa-solid fa-check"></i>
+            Pedido enviado
+          </button>
+        `;
+
+    if (ride.passengers.some(p => p === user.id))
+      return `
+        <button id="take-ride-btn" class="error" onclick="handleLeaveRide('${ride.id}')">
+          <i class="fa-regular fa-circle-xmark"></i>
+          Sair da Carona
+        </button>
+      `;
+
+    if (ride.type === 'get')
+      return `
+          <button id="take-ride-btn" onclick="handleCreateRequest('${ride.id}')">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            Dar carona
+          </button>
+        `;
+
+    if (ride.type === 'give')
+      return `
+          <button id="take-ride-btn" onclick="handleCreateRequest('${ride.id}')">
+            <i class="fa-solid fa-car-side"></i>
+            Pegar carona
+          </button>
+        `;
+  };
+
   modalContentEl.innerHTML = `
     <div class="row">
       <div class="icon-info">
@@ -145,48 +194,11 @@ const handleOpenModal = id => {
         </div>`
         : ''
     }
-    <div class="modal-btn">
-      ${
-        rideCreator.id !== user.id
-          ? requestSent
-            ? `
-            <button id="take-ride-btn" class="outlined" disabled>
-              <i class="fa-solid fa-check"></i>
-              Pedido enviado
-            </button>
-          `
-            : `${
-                ride.type === 'get'
-                  ? `
-              <button id="take-ride-btn" onclick="handleTakeRide('${ride.id}')">
-                <i class="fa-solid fa-hand-holding-heart"></i>
-                Dar carona
-              </button>
-            `
-                  : `
-              <button id="take-ride-btn" onclick="handleTakeRide('${ride.id}')">
-                <i class="fa-solid fa-car-side"></i>
-                Pegar carona
-              </button>
-            `
-              }
-          `
-          : `
-          <button id="take-ride-btn" onclick="handleEditRide('${ride.id}')">
-            <i class="fa-solid fa-pen-to-square"></i>
-            Editar
-          </button>
-          <button id="take-ride-btn" class="error" onclick="handleDeleteRide('${ride.id}')">
-            <i class="fa-regular fa-circle-xmark"></i>
-            Apagar
-          </button>
-          `
-      }
-    </div>
+    <div class="modal-btn">${generateModalButton()}</div>
   `;
 };
 
-const handleTakeRide = id => {
+const handleCreateRequest = id => {
   const modalBtn = document.getElementById('take-ride-btn');
   try {
     const request = {
@@ -209,7 +221,7 @@ const handleTakeRide = id => {
       modalBtn.classList.remove('saved');
       modalBtn.innerText = 'Pegar carona';
       modalBtn.disabled = false;
-      $('.modal').removeClass('opened');
+      closeModal();
     }, 1 * 1000);
   } catch (err) {
     console.error(err);
@@ -220,4 +232,18 @@ const handleTakeRide = id => {
       modalBtn.innerText = 'Pegar carona';
     }, 1 * 1000);
   }
+};
+
+const handleLeaveRide = (id, userId = getUser().id) => {
+  const ride = getRide(id);
+  ride.passengers = ride.passengers.filter(p => p !== userId);
+  ride.spaces = Number(ride.spaces) + 1;
+  setRides(
+    getRides().map(r => {
+      if (r.id === ride.id) return ride;
+      return r;
+    })
+  );
+  closeModal();
+  loadRides();
 };

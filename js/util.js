@@ -30,6 +30,10 @@ const getRides = () => {
   return JSON.parse(localStorage.getItem('rides'));
 };
 
+const getRide = id => {
+  return getRides()?.find(r => r.id === id);
+};
+
 const setRides = rides => {
   localStorage.setItem('rides', JSON.stringify(rides));
 };

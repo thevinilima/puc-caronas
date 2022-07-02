@@ -3,7 +3,7 @@ const handleOpenModal = id => {
   document.body.style.overflow = 'hidden';
 
   const request = getRequests().find(r => r.id === id);
-  const ride = getRides().find(r => r.id === request.rideId);
+  const ride = getRide(request.rideId);
 
   const addressStr = `${ride.address.street} ${ride.address.number}, ${ride.address.region}`;
   const route =

@@ -113,6 +113,9 @@ function handleDeleteRide(id) {
     const rides = getRides();
     setRides(rides.filter(ride => ride.id !== id));
 
+    const requests = getRequests();
+    setRequests(requests.filter(req => req.rideId !== id));
+
     closeModal();
     loadRides();
   }

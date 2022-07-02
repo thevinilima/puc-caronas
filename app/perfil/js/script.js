@@ -20,7 +20,7 @@ const setUser = user => {
 const loadUser = () => {
   const user = getUser();
 
-  if (localStorage.getItem('is_first_time')) {
+  if (JSON.parse(localStorage.getItem('is_first_time'))) {
     $('.first-time-warn').removeClass('hidden');
   }
 
@@ -77,9 +77,9 @@ formEl.addEventListener('submit', e => {
     setTimeout(() => {
       $('#submit').removeClass('saved');
       $('#submit').text('Salvar');
-      localStorage.removeItem('is_first_time');
       $('.first-time-warn').addClass('hidden');
-      checkFirstTime();
+      if (isFirstTime()) location.href = '../caronas/';
+      localStorage.removeItem('is_first_time');
     }, 1 * 1000);
   } catch (err) {
     console.error(err);

@@ -33,3 +33,7 @@ map.on('locationerror', onLocationFound);
 map.locate({ setView: true, maxZoom: 16 });
 
 $('.welcome-msg').text(`Olá, ${getUser().name}`);
+$('#begin-btn').prop('href', () => {
+  if (JSON.parse(localStorage.getItem('is_first_time'))) return '../perfil/';
+  return '../caronas/';
+});

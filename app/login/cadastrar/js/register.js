@@ -29,7 +29,15 @@ const registerUser = () => {
   const pass = $('#pass').val();
   const passConfirmation = $('#confirm-pass').val();
 
-  if (!name || !email || !code || !pass || !passConfirmation) return;
+  if (
+    !name ||
+    !email ||
+    !code ||
+    !pass ||
+    !passConfirmation ||
+    !arePasswordsEqual()
+  )
+    return;
 
   const user = {
     name,
@@ -45,14 +53,19 @@ const registerUser = () => {
   } else $('#user-exists-msg').removeClass('hidden');
 };
 
-const comparePasswords = () => {
-  if ($('#pass').val() === $('#confirm-pass').val())
+const arePasswordsEqual = () => {
+  if ($('#pass').val() === $('#confirm-pass').val()) {
     $('#pass-warn').addClass('hidden');
-  else $('#pass-warn').removeClass('hidden');
+    return true;
+  }
+  $('#pass-warn').removeClass('hidden');
+  return false;
 };
 
-$('#pass').on('input', comparePasswords);
-$('#confirm-pass').on('input', comparePasswords);
+$('#pass').on('input', () => {
+  if ($('#confirm-pass').val() || !$('#pass').val()) arePasswordsEqual();
+});
+$('#confirm-pass').on('input', arePasswordsEqual);
 
 formEl.addEventListener('submit', e => {
   e.preventDefault();

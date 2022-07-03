@@ -14,8 +14,10 @@ const insertUser = user => {
   users.push(user);
   localStorage.setItem('db_users', JSON.stringify(users));
   localStorage.setItem('is_first_time', true);
-  localStorage.setItem('rides', JSON.stringify([]));
-  localStorage.setItem('requests', JSON.stringify([]));
+  if (users.length === 1) {
+    localStorage.setItem('rides', JSON.stringify([]));
+    localStorage.setItem('requests', JSON.stringify([]));
+  }
 
   return true;
 };

@@ -83,7 +83,7 @@ const handleOpenModal = id => {
         `;
 
     if (
-      requests.some(
+      requests?.some(
         r =>
           r.userId === user.id && r.rideId === ride.id && r.status === 'pending'
       )

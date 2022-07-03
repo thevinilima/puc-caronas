@@ -27,7 +27,7 @@ const getUser = id => {
 };
 
 const getRides = () => {
-  return JSON.parse(localStorage.getItem('rides'));
+  return JSON.parse(localStorage.getItem('rides')) || [];
 };
 
 const getRide = id => {
@@ -39,7 +39,7 @@ const setRides = rides => {
 };
 
 const getRequests = () => {
-  return JSON.parse(localStorage.getItem('requests'));
+  return JSON.parse(localStorage.getItem('requests')) || [];
 };
 
 const setRequests = requests => {
